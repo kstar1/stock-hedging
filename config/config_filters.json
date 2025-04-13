@@ -1,0 +1,8 @@
+{
+    "moneyness_range": [
+        0.8,
+        1.0
+    ],
+    "max_bid_ask_spread": 10.0,
+    "min_volume": 10
+}

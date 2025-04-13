@@ -1,5 +1,8 @@
 # src/main.py
 
+import json
+import os
+
 from data_fetcher import (
     get_stock_info,
     get_option_expirations,
@@ -11,13 +14,19 @@ from hedge_simulator import simulate_hedge
 from visualizer import plot_hedge_simulation
 from logger import log_simulation
 from utils import calculate_put_values
+from session_manager import save_selected_expiration, get_selected_expiration, clear_session
+from cleanup import clean_up_logs_and_cache
 
 try:
     from config import NUM_SHARES
 except ImportError:
     NUM_SHARES = float(input("Enter your number of TSLA shares: "))
 
-selected_exp = None
+# Load filter config
+with open("config_filters.json", "r") as f:
+    FILTER_CONFIG = json.load(f)
+
+selected_exp = get_selected_expiration()
 current_puts = None
 filtered_puts = None
 selected_strike = None
@@ -58,6 +67,7 @@ def main():
             expirations = get_option_expirations()
             print(expirations)
             selected_exp = input("\nSelect expiration (YYYY-MM-DD): ")
+            save_selected_expiration(selected_exp)
 
         elif choice == "4":
             if not selected_exp:
@@ -72,7 +82,13 @@ def main():
                 print("Please fetch raw puts first (option 4).")
                 continue
 
-            filtered_puts = filter_puts(current_puts, current_price=current_price)
+            filtered_puts = filter_puts(
+                puts_df=current_puts,
+                current_price=current_price,
+                moneyness_range=FILTER_CONFIG["moneyness_range"],
+                max_bid_ask_spread=FILTER_CONFIG["max_bid_ask_spread"],
+                min_volume=FILTER_CONFIG["min_volume"]
+            )
             suggestions = suggest_put(filtered_puts)
             print("\n=== Filtered Suggestions ===")
             print(suggestions)
@@ -132,6 +148,9 @@ def main():
             print("✅ Hedge simulation logged successfully.")
 
         elif choice == "0":
+            print("Cleaning up session...")
+            clear_session()
+            clean_up_logs_and_cache()
             print("Goodbye!")
             break
 

@@ -10,6 +10,7 @@ from option_analyzer import filter_puts, suggest_put
 from hedge_simulator import simulate_hedge
 from visualizer import plot_hedge_simulation
 from logger import log_simulation
+from utils import calculate_put_values
 
 try:
     from config import NUM_SHARES
@@ -70,6 +71,7 @@ def main():
             if current_puts is None:
                 print("Please fetch raw puts first (option 4).")
                 continue
+
             filtered_puts = filter_puts(current_puts, current_price=current_price)
             suggestions = suggest_put(filtered_puts)
             print("\n=== Filtered Suggestions ===")
@@ -80,9 +82,21 @@ def main():
                 selected_row = suggestions.iloc[selected_idx]
                 selected_strike = selected_row["strike"]
                 selected_premium = selected_row["mid_price"]
-                print(f"Selected Strike: {selected_strike}, Premium: {selected_premium}")
+                print(f"\n🎯 Selected Strike: {selected_strike}, Premium: {selected_premium}")
+
+                intrinsic, time = calculate_put_values(
+                    strike=selected_strike,
+                    market_price=current_price,
+                    option_price=selected_premium
+                )
+                print(f"💡 Intrinsic Value: {intrinsic:.2f}")
+                print(f"⏳ Time Value: {time:.2f}")
+                if time > intrinsic:
+                    print("🧠 Most of this option’s value is time-based — you're paying for protection against big moves before expiration.")
+                else:
+                    print("🛡️ This option is mostly intrinsic — meaning it would be profitable if exercised today.")
             except Exception as e:
-                print(f"Invalid selection: {e}")
+                print(f"❌ Invalid selection: {e}")
                 selected_strike = None
 
         elif choice == "6":
@@ -99,13 +113,21 @@ def main():
             )
             plot_hedge_simulation(df)
 
+            intrinsic, time = calculate_put_values(
+                strike=selected_strike,
+                market_price=current_price,
+                option_price=selected_premium
+            )
+
             log_simulation(
                 df=df,
                 strike=selected_strike,
                 premium=selected_premium,
                 expiration=selected_exp,
                 current_price=current_price,
-                num_shares=NUM_SHARES
+                num_shares=NUM_SHARES,
+                intrinsic_value=intrinsic,
+                time_value=time
             )
             print("✅ Hedge simulation logged successfully.")
 

@@ -1,90 +1,67 @@
-# TSLA Stock Hedging Toolkit
+# TSLA Hedging & Option Analysis App
 
-This CLI-based application helps individual investors evaluate and simulate hedging strategies using put options for TSLA stock.
+This project helps investors simulate and visualize option-based hedging strategies — especially protective PUTs — for TSLA and other tickers. It is transitioning from a CLI tool into an interactive **Streamlit web app**.
 
-## 🔧 Features
+## 🚀 Features (CLI & Streamlit MVP)
 
-### 1. View Stock and Option Data
-- Pulls real-time TSLA stock data via `yfinance`
-- Lists available PUT option expiration dates and filtered contracts
-- Saves raw and filtered chains for inspection
+### ✅ Current (CLI)
+- TSLA stock data and historical price chart
+- PUT option chain fetcher (from Yahoo Finance)
+- Filter by volume, strike proximity, bid-ask spread
+- Simulate payoff of buying a PUT (Option 5)
+- Simulate capital-preserving hedge (Option 6)
+- Breakeven zone plot with color-coded volume
+- All results logged and saved
 
-### 2. Simulate Hedging Scenarios
-- Plot P&L for unhedged vs. put-hedged portfolio
-- Visualize breakeven zones for each PUT option
-- Identify effective hedging contracts based on strike, premium, volume, and breakeven logic
+### 🧱 Streamlit App In Progress
+- Interactive dashboard to:
+  - Input #shares, purchase price, hedge budget
+  - Choose expiration and PUT contracts
+  - Simulate P&L visually
+  - Generate insights and breakeven maps
+- Download session logs and contract summaries
+- Support for **any ticker**, not just TSLA
+- Extendable to **CALL options** and multi-leg strategies
 
-### 3. Portfolio Decision Support
-- Simulate capital-preserving hedge based on your budget and funding method (cash/sell shares)
-- Compute ROI on hedging
-- Shade profit/loss zones in plots
+## 📂 Folder Structure (Recommended)
 
-### 4. Logging & Insights
-- Logs all simulations with input/output data for audit and future analysis
-- Explains graph regions and breakeven logic clearly in terminal output
+```
+stock-hedging/
+├── src/
+│   ├── cli/ (optional legacy)
+│   ├── sim/
+│   ├── viz/
+│   ├── data/
+│   ├── utils/
+├── config/
+├── logs/
+├── streamlit_app.py  👈 main app file
+├── requirements.txt
+└── README.md
+```
 
----
+## 🧠 Future Capabilities
+- Call option simulation
+- AI-powered summaries of option chains
+- Multi-leg strategy simulation (spreads, collars)
+- Dynamic filters (IV, volume, moneyness sliders)
+- Sentiment signals from web/news
+- Optimal contract ranking engine
 
-## 💻 How to Use
+## 📦 Setup
 
 ```bash
-# Install dependencies (recommended to use Python 3.10 or 3.11)
+# Set up venv
+python -m venv venv
+source venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
 
-# Run the app
-python src/main.py
-```
-
-The app will prompt you to select options interactively.
-
----
-
-## 🧠 Example Scenario
-
-You hold 34.65 shares of TSLA bought at $429. You're worried about a downturn and want to explore protective puts.
-
-- Use Option 5 to filter contracts by volume, price, and strike
-- See breakeven zones graphically
-- Simulate payoff for any contract
-
----
-
-## 📂 Project Structure
-
-```
-src/
-├── main.py                  # Entry point
-├── data_fetcher.py          # Loads stock + options data
-├── hedge_simulator.py       # Option 5 simulations
-├── hedge_decision_simulator.py  # Option 6 logic
-├── visualizer.py            # All matplotlib plots
-├── utils.py                 # Helpers for calculations
-├── logger.py                # Logging all scenarios
-├── config/                  # Filter config
-└── logs/                    # Output logs and breakeven CSVs
+# Run Streamlit app
+streamlit run streamlit_app.py
 ```
 
 ---
 
-## 🧾 Notes
-- Currently supports **TSLA** but can be extended to other tickers
-- All data sourced from Yahoo Finance (via `yfinance`)
-- Volume-based color gradation for strike selection visualization
-
----
-
-## 🧠 Future Features
-- Toggle filters (IV/volume/etc.)
-- Combine web scraping to infer sentiment
-- Optimal hedge contract selector
-- Multi-leg hedge strategies (coming soon!)
-
----
-
-## ⚠️ Known Limitations
-- Number of PUT contracts shown may be filtered due to the current volume/strike range config. Modify `config_filters.py` to widen this.
-- Some features rely on clean NumPy/Pandas compatibility. Avoid NumPy 2.x for now if issues occur.
-
----
-
-Developed by [Kshitij Dutt](https://github.com/kstar1) as a hands-on investing assistant.
+Built by [Kshitij Dutt](https://github.com/kstar1) — designed to make retail hedging simple, smart, and data-backed.

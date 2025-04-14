@@ -1,107 +1,90 @@
-# 🛡️ TSLA Stock Hedging Simulator
+# TSLA Stock Hedging Toolkit
 
-A Python-based command-line tool to help individual investors **hedge their Tesla (TSLA) stock position** using real-time market data from Yahoo Finance.
+This CLI-based application helps individual investors evaluate and simulate hedging strategies using put options for TSLA stock.
 
-Built for automation, experimentation, and extension — with clean code modules and logging.
+## 🔧 Features
 
----
+### 1. View Stock and Option Data
+- Pulls real-time TSLA stock data via `yfinance`
+- Lists available PUT option expiration dates and filtered contracts
+- Saves raw and filtered chains for inspection
 
-## 📈 Features
+### 2. Simulate Hedging Scenarios
+- Plot P&L for unhedged vs. put-hedged portfolio
+- Visualize breakeven zones for each PUT option
+- Identify effective hedging contracts based on strike, premium, volume, and breakeven logic
 
-- ✅ Real-time TSLA stock info and options chain via `yfinance`
-- ✅ Filters PUT options based on moneyness, bid-ask spread, and volume
-- ✅ Suggests optimal hedge choices using puts
-- ✅ Simulates portfolio performance under recession scenarios
-- ✅ Visualizes profit/loss for hedged vs unhedged positions
-- ✅ Logs simulations to a CSV file for analysis
+### 3. Portfolio Decision Support
+- Simulate capital-preserving hedge based on your budget and funding method (cash/sell shares)
+- Compute ROI on hedging
+- Shade profit/loss zones in plots
 
----
-
-## 🧰 Project Structure
-
-```
-stock-hedging/
-├── src/
-│   ├── config.py               # Local file with number of TSLA shares (excluded from Git)
-│   ├── data_fetcher.py         # Pulls TSLA and option chain data
-│   ├── option_analyzer.py      # Filters and ranks puts
-│   ├── hedge_simulator.py      # Models hedged/unhedged performance
-│   ├── visualizer.py           # Plots portfolio profit/loss
-│   ├── logger.py               # Logs simulation results to CSV
-│   └── main.py                 # CLI entry point
-├── logs/
-│   └── .gitkeep                # Placeholder (actual logs ignored)
-├── .gitignore
-├── requirements.txt
-└── README.md
-```
+### 4. Logging & Insights
+- Logs all simulations with input/output data for audit and future analysis
+- Explains graph regions and breakeven logic clearly in terminal output
 
 ---
 
-## ⚙️ Setup Instructions
+## 💻 How to Use
 
 ```bash
-# Clone the repo
-git clone https://github.com/kstar1/stock-hedging.git
-cd stock-hedging
-
-# Create a virtual environment
-python3 -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate on Windows
-
-# Install dependencies
+# Install dependencies (recommended to use Python 3.10 or 3.11)
 pip install -r requirements.txt
 
-# (Optional) Add your personal holding in src/config.py
-echo "NUM_SHARES = 34.65" > src/config.py
-```
-
----
-
-## 🚀 Run the CLI
-
-```bash
+# Run the app
 python src/main.py
 ```
 
-You’ll get a menu to:
-- View TSLA stock info
-- Explore option chains
-- Simulate hedging outcomes
-- Plot profit/loss with and without protection
+The app will prompt you to select options interactively.
 
 ---
 
-## 📝 Sample Output
+## 🧠 Example Scenario
+
+You hold 34.65 shares of TSLA bought at $429. You're worried about a downturn and want to explore protective puts.
+
+- Use Option 5 to filter contracts by volume, price, and strike
+- See breakeven zones graphically
+- Simulate payoff for any contract
+
+---
+
+## 📂 Project Structure
 
 ```
-=== Suggested PUT Options ===
-contractSymbol  strike  mid_price  volume ...
-TSLA240920P00240000  240.0   6.35       1432   ...
-
-✅ Hedge simulation logged successfully.
+src/
+├── main.py                  # Entry point
+├── data_fetcher.py          # Loads stock + options data
+├── hedge_simulator.py       # Option 5 simulations
+├── hedge_decision_simulator.py  # Option 6 logic
+├── visualizer.py            # All matplotlib plots
+├── utils.py                 # Helpers for calculations
+├── logger.py                # Logging all scenarios
+├── config/                  # Filter config
+└── logs/                    # Output logs and breakeven CSVs
 ```
 
 ---
 
-## 📊 Sample Plot
-
-_Profit/Loss comparison between unhedged and hedged TSLA portfolio_
-*(Insert screenshot later)*
-
----
-
-## 🔜 TODO / Extensions
-
-- [ ] Export report to PDF or HTML
-- [ ] Add CLI flags (e.g. `--simulate`)
-- [ ] Streamlit or Flask frontend
-- [ ] Integration with multiple tickers (AAPL, NVDA, etc.)
+## 🧾 Notes
+- Currently supports **TSLA** but can be extended to other tickers
+- All data sourced from Yahoo Finance (via `yfinance`)
+- Volume-based color gradation for strike selection visualization
 
 ---
 
-## 🤝 Contributing
-
-PRs welcome! Feel free to fork and extend the app.
+## 🧠 Future Features
+- Toggle filters (IV/volume/etc.)
+- Combine web scraping to infer sentiment
+- Optimal hedge contract selector
+- Multi-leg hedge strategies (coming soon!)
 
 ---
+
+## ⚠️ Known Limitations
+- Number of PUT contracts shown may be filtered due to the current volume/strike range config. Modify `config_filters.py` to widen this.
+- Some features rely on clean NumPy/Pandas compatibility. Avoid NumPy 2.x for now if issues occur.
+
+---
+
+Developed by [Kshitij Dutt](https://github.com/kstar1) as a hands-on investing assistant.

@@ -1,32 +1,20 @@
-# src/logger.py
-
-import pandas as pd
-from datetime import datetime
 import os
 
-LOG_FILE = os.path.join(os.path.dirname(__file__), '../logs/hedge_logs.csv')
+LOG_FILE = "logs/session_log.txt"
 
-def log_simulation(df: pd.DataFrame, strike, premium, expiration, current_price, num_shares):
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    hedged_min = df["Hedged_PnL"].min()
-    hedged_max = df["Hedged_PnL"].max()
-    unhedged_min = df["Unhedged_PnL"].min()
-    unhedged_max = df["Unhedged_PnL"].max()
+def reset_log():
+    os.makedirs("logs", exist_ok=True)
+    with open(LOG_FILE, "w") as f:
+        f.write("=== TSLA Hedge Session Log ===\n")
 
-    log_entry = pd.DataFrame([{
-        "timestamp": timestamp,
-        "expiration": expiration,
-        "strike": strike,
-        "premium": premium,
-        "num_shares": num_shares,
-        "current_price": current_price,
-        "hedged_min_pnl": hedged_min,
-        "hedged_max_pnl": hedged_max,
-        "unhedged_min_pnl": unhedged_min,
-        "unhedged_max_pnl": unhedged_max
-    }])
+def log_simulation(**kwargs):
+    with open(LOG_FILE, "a") as f:
+        f.write("\n--- Hedge Simulation ---\n")
+        for k, v in kwargs.items():
+            f.write(f"{k}: {v}\n")
 
-    if os.path.exists(LOG_FILE):
-        log_entry.to_csv(LOG_FILE, mode='a', header=False, index=False)
-    else:
-        log_entry.to_csv(LOG_FILE, index=False)
+def log_decision(**kwargs):
+    with open(LOG_FILE, "a") as f:
+        f.write("\n--- Decision Simulation ---\n")
+        for k, v in kwargs.items():
+            f.write(f"{k}: {v}\n")

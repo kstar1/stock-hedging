@@ -1,44 +1,49 @@
-# src/option_analyzer.py
 import pandas as pd
 
 def filter_puts(
     puts_df: pd.DataFrame,
     current_price: float,
-    max_days_to_expiry: int = 60,
-    min_volume: int = 10,
-    max_bid_ask_spread: float = 10.0,
-    moneyness_range: tuple = (0.8, 1.0)
-):
+    min_volume: int = 100,
+    moneyness_range: tuple = (0.95, 1.05)
+) -> pd.DataFrame:
     """
-    Filters put options based on:
-    - Expiry within `max_days_to_expiry` (handled in caller via expiration selection)
-    - Strike between 80% and 100% of current price (default moneyness)
-    - Minimum trading volume
-    - Reasonable bid-ask spread
+    Filter PUT options for hedging based on:
+    - Sufficient volume
+    - Strike close to or above current price
+    - Reasonable moneyness
     """
-    # Calculate additional metrics
-    puts_df["mid_price"] = (puts_df["bid"] + puts_df["ask"]) / 2
-    puts_df["spread"] = puts_df["ask"] - puts_df["bid"]
-    puts_df["moneyness"] = puts_df["strike"] / current_price
+    puts_df = puts_df.copy()
 
-    # Apply filters
-    filtered = puts_df[
-        (puts_df["volume"] >= min_volume) &
-        (puts_df["spread"] <= max_bid_ask_spread) &
-        (puts_df["moneyness"] >= moneyness_range[0]) &
-        (puts_df["moneyness"] <= moneyness_range[1])
-    ].copy()
+    # Calculate mid price if not already present
+    if "mid_price" not in puts_df.columns:
+        puts_df["mid_price"] = (puts_df["bid"] + puts_df["ask"]) / 2
 
-    # Sort by best mid price (lowest premium for highest protection)
-    filtered.sort_values(by=["mid_price", "strike"], ascending=[True, False], inplace=True)
+    puts_df["intrinsic_value"] = puts_df["strike"] - current_price
+    puts_df["time_value"] = puts_df["mid_price"] - puts_df["intrinsic_value"]
 
-    return filtered.reset_index(drop=True)
+    # Filter 1: strike within 95% to 105% of current price
+    min_strike = current_price * moneyness_range[0]
+    max_strike = current_price * moneyness_range[1]
+    puts_df = puts_df[puts_df["strike"].between(min_strike, max_strike)]
 
+    # Filter 2: must have sufficient volume
+    puts_df = puts_df[puts_df["volume"] >= min_volume]
 
-def suggest_put(filtered_puts: pd.DataFrame, top_n: int = 3):
+    # Filter 3: must have non-negative mid_price
+    puts_df = puts_df[puts_df["mid_price"] > 0]
+
+    # Sort by moneyness (closest to ATM)
+    puts_df["abs_diff"] = abs(puts_df["strike"] - current_price)
+    puts_df = puts_df.sort_values("abs_diff")
+
+    return puts_df.reset_index(drop=True)
+
+def suggest_put(filtered_df: pd.DataFrame, top_n: int = 5) -> pd.DataFrame:
     """
-    Suggest top N put options based on filtered results
+    Return top N PUTs with reasonable hedging potential
     """
-    return filtered_puts.head(top_n)[[
-        "contractSymbol", "strike", "lastPrice", "bid", "ask", "mid_price", "volume", "impliedVolatility"
-    ]]
+    columns = [
+        "contractSymbol", "strike", "lastPrice", "bid", "ask",
+        "mid_price", "volume", "impliedVolatility"
+    ]
+    return filtered_df[columns].head(top_n)

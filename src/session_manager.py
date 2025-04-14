@@ -18,3 +18,17 @@ def clear_session():
         os.remove(SESSION_FILE)
     except FileNotFoundError:
         pass
+import os
+import glob
+
+def clear_cache_files():
+    """Deletes cache files and session logs at the start of a session."""
+    cache_patterns = ["puts_*.csv", "logs/*.txt"]
+
+    for pattern in cache_patterns:
+        for file in glob.glob(pattern):
+            try:
+                os.remove(file)
+                print(f"🧹 Deleted: {file}")
+            except Exception as e:
+                print(f"⚠️ Could not delete {file}: {e}")

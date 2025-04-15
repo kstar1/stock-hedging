@@ -5,3 +5,26 @@ config.py
 logs/hedge_logs.csv
 logs/hedge_logs.csv
 session/
+
+# Python
+__pycache__/
+*.py[cod]
+*.class
+
+# Environment variables
+.env
+
+# Logs
+logs/*.log
+logs/*.csv
+
+# Session/Cache files (if any specific patterns)
+session/
+
+# IDE / Editor specific
+.vscode/
+.idea/
+.DS_Store
+
+# Streamlit
+.streamlit/

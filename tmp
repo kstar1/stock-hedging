@@ -1,0 +1,23 @@
+echo "# Python" >> .gitignore
+echo "__pycache__/" >> .gitignore
+echo "*.py[cod]" >> .gitignore
+echo "*$py.class" >> .gitignore
+echo "" >> .gitignore
+echo "# Environment variables" >> .gitignore
+echo ".env" >> .gitignore
+echo "" >> .gitignore
+echo "# Logs" >> .gitignore
+echo "logs/*.log" >> .gitignore
+echo "logs/*.csv" >> .gitignore 
+echo "" >> .gitignore
+echo "# Session/Cache files (if any specific patterns)" >> .gitignore
+echo "session/" >> .gitignore
+echo "*.csv" 
+echo "" >> .gitignore
+echo "# IDE / Editor specific" >> .gitignore
+echo ".vscode/" >> .gitignore
+echo ".idea/" >> .gitignore
+echo ".DS_Store" >> .gitignore
+echo "" >> .gitignore
+echo "# Streamlit" >> .gitignore
+echo ".streamlit/" >> .gitignore

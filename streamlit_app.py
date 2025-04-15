@@ -1,17 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-
 from config.settings import DEFAULT_TICKER
-# --- Session State Defaults ---
-defaults = {
-    "ticker": DEFAULT_TICKER,
-    "stock_info": {},
-    "selected_expiration": None
-}
-for key, val in defaults.items():
-    if key not in st.session_state:
-        st.session_state[key] = val
 
 from src.data.stock_data_provider import get_stock_info, get_historical_price
 from src.ui.sidebar import build_sidebar
@@ -25,6 +15,16 @@ st.set_page_config(
 )
 
 st.title("🛡️ Stock Hedging & Option Analysis")
+
+# --- Session State Defaults ---
+defaults = {
+    "ticker": DEFAULT_TICKER,
+    "stock_info": {},
+    "selected_expiration": None
+}
+for key, val in defaults.items():
+    if key not in st.session_state:
+        st.session_state[key] = val
 
 # --- Tab Selector ---
 tab_labels = [

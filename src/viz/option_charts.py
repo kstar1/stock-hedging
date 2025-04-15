@@ -22,7 +22,7 @@ def plot_breakeven_zone_map(df, expiration_label):
 
     # Normalize volumes to color
     norm = plt.Normalize(volume.min(), volume.max())
-    cmap = cm.get_cmap("viridis")  # ✅ use this for red-to-green gradient
+    cmap = cm.get_cmap("viridis")  
 
     for xi, y1, y2, vol in zip(x, y_low, y_high, volume):
         ax.plot([xi, xi], [y1, y2], color=cmap(norm(vol)), linewidth=3)

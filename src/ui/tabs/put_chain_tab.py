@@ -72,7 +72,8 @@ def render_put_chain_tab():
             current_price=current_price,
             num_shares=st.session_state.shares,
             avg_price=st.session_state.avg_price,
-            hedge_budget=st.session_state.hedge_budget
+            hedge_budget=st.session_state.hedge_budget,
+            budget_source=st.session_state.budget_source,
         )
 
         st.subheader("Breakeven Zone Map")
@@ -125,17 +126,32 @@ def render_put_chain_tab():
                 # === Breakeven Explanation ===
                 shares = st.session_state.shares
                 avg_price = st.session_state.avg_price
+                initial_capital = shares * avg_price
                 hedge_budget = st.session_state.hedge_budget
+                budget_source=st.session_state.budget_source
+                current_price = st.session_state.stock_info.get("current_price", 0)
 
                 strike = selected_row['strike']
                 premium = selected_row['mid_price']
                 shares_per_contract = 100
 
-                initial_capital = shares * avg_price
                 hedge_cost_per_contract = premium * shares_per_contract
                 contracts = math.floor(hedge_budget / hedge_cost_per_contract)
                 protected_shares = contracts * shares_per_contract
-                unprotected_shares = max(0, shares - protected_shares)
+                #unprotected_shares = max(0, shares - protected_shares)
+
+                # Copied from src/sim/analytics.py
+                num_shares=st.session_state.shares
+                num_protected_shares = contracts * shares_per_contract
+
+                if budget_source == "sell":
+                    shares_sold = (hedge_cost_per_contract * contracts) / current_price if current_price > 0 else 0
+                    remaining_shares = shares - shares_sold
+                    unprotected_shares = max(0, num_shares - shares_sold)
+                else:  # budget_source == "cash"
+                    shares_sold = 0.0  # Explicitly set shares_sold to 0 for cash
+                    remaining_shares = shares  # remaining_shares is initial shares for cash
+                    unprotected_shares = max(0, num_shares - num_protected_shares)
 
                 if protected_shares > 0:
                     if unprotected_shares - protected_shares != 0:
@@ -145,11 +161,85 @@ def render_put_chain_tab():
                 else:
                     lower_breakeven = None
 
-                shares_sold = hedge_budget / current_price if current_price > 0 else 0
-                remaining_shares = shares - shares_sold
+                #shares_sold = hedge_budget / current_price if current_price > 0 else 0
+                #remaining_shares = shares - shares_sold
                 upper_breakeven = initial_capital / remaining_shares if remaining_shares > 0 else None
 
+                """
+                st.write(f"DEBUG: budget_source: {budget_source}")
+                st.write(f"DEBUG: shares: {shares}")
+                st.write(f"DEBUG: avg_price: {avg_price}")
+                st.write(f"DEBUG: initial_capital: {initial_capital}")
+                st.write(f"DEBUG: hedge_budget: {hedge_budget}")
+                st.write(f"DEBUG: contracts: {contracts}")
+                st.write(f"DEBUG: strike: {strike}")
+                st.write(f"DEBUG: premium: {premium}")
+                st.write(f"DEBUG: protected_shares: {protected_shares}")
+                st.write(f"DEBUG: unprotected_shares: {unprotected_shares}")
+                st.write(f"DEBUG: lower_breakeven: {lower_breakeven}")
+                st.write(f"DEBUG: current_price: {current_price}")
+                st.write(f"DEBUG: shares_sold: {shares_sold}")
+                st.write(f"DEBUG: remaining_shares: {remaining_shares}")
+                st.write(f"DEBUG: upper_breakeven: {upper_breakeven}")
+                """
                 st.markdown("### 📘 Breakeven Explanation")
+                st.markdown(f'''
+#### 💰 Your Starting Position
+
+You hold **{shares:.2f} shares** of TSLA, purchased at an average of **${avg_price:.2f}**.  
+This gives you an initial capital base of:
+
+```
+Initial Capital = {shares:.2f} × ${avg_price:.2f} = ${initial_capital:,.2f}
+```
+
+---
+
+#### 🛡️ Your Hedge Setup
+
+You allocated **${hedge_budget:,.2f}** to hedge your portfolio by purchasing **{contracts} PUT contracts** at:
+- Strike Price = **${strike:.2f}**
+- Premium = **${premium:.2f}**
+- Protected Shares = **{protected_shares}**
+- Unprotected Shares = **{unprotected_shares:.2f}**
+
+---
+
+#### 🔻 Lower Breakeven (if stock falls)
+
+PUTs protect you when TSLA drops. Here's how we compute the price where your PUTs and unprotected shares exactly recover your original capital:
+
+```
+Lower Breakeven = {strike:.2f} - {premium:.2f} - (Initial Capital / Protected Shares)  
+                = {strike:.2f} - {premium:.2f} - ({initial_capital:.2f} / {protected_shares})  
+                = **${lower_breakeven:.2f}**
+```
+
+---
+
+#### 🔺 Upper Breakeven (if stock rises)
+
+You chose to fund the hedge using **{budget_source.upper()}**.
+''')
+
+                if budget_source == "sell":
+                    st.markdown(f'''
+In this case, you sold shares to raise your hedge budget:
+
+```
+Shares Sold = Hedge Budget / Market Price = ${hedge_budget:,.2f} / ${current_price:.2f} = {shares_sold:.2f}
+Remaining Shares = {shares:.2f} - {shares_sold:.2f} = {remaining_shares:.2f}
+Upper Breakeven = Initial Capital / Remaining Shares = ${initial_capital:,.2f} / {remaining_shares:.2f} = **${upper_breakeven:.2f}**
+```
+''')
+                else:
+                    st.markdown(f'''
+Since you're funding the hedge with external cash, you keep all **{shares:.2f} shares**.
+
+```
+Upper Breakeven = Initial Capital / Shares = ${initial_capital:,.2f} / {shares:.2f} = **${upper_breakeven:.2f}**
+```
+''')
                 st.markdown(f"""
 #### 💰 Initial Capital
 

@@ -12,7 +12,8 @@ def compute_breakeven_zones(
     current_price: float,
     num_shares: float,
     avg_price: float,
-    hedge_budget: float
+    hedge_budget: float,
+    budget_source: str,
 ) -> pd.DataFrame:
     """
     Calculates breakeven zones based on user's holdings and hedge budget,
@@ -58,39 +59,33 @@ def compute_breakeven_zones(
     df["upper_breakeven"] = np.nan
 
     for index, row in df.iterrows():
-        contracts = row["contracts"]
+        contracts = int(row["contracts"])
         strike_price = row["strike"]
         premium_per_share = row["mid_price"]
 
-        if contracts > 0:
-            num_protected_shares = contracts * shares_per_contract
+        num_protected_shares = contracts * shares_per_contract
+
+        if budget_source == "sell":
+            shares_sold = row["total_hedge_cost"] / current_price if current_price > 0 else 0
+            num_unprotected_shares = max(0, num_shares - shares_sold)
+        else:  # budget_source == "cash"
             num_unprotected_shares = max(0, num_shares - num_protected_shares)
 
-            # Lower Breakeven Calculation (incorporating the profit from puts)
-            # Capital at lower breakeven = Value of unprotected shares + Net profit from protected shares
-            # initial_capital = (num_unprotected_shares * lower_breakeven) + (num_protected_shares * (strike_price - premium_per_share - lower_breakeven))
-            # initial_capital = num_unprotected_shares * lower_breakeven + num_protected_shares * strike_price - num_protected_shares * premium_per_share - num_protected_shares * lower_breakeven
-            # initial_capital + num_protected_shares * premium_per_share - num_protected_shares * strike_price = lower_breakeven * (num_unprotected_shares - num_protected_shares)
-            if (num_unprotected_shares - num_protected_shares) != 0:
+        # Lower Breakeven Calculation
+        if num_protected_shares > 0:
+            if num_unprotected_shares - num_protected_shares != 0:
                 df.loc[index, "lower_breakeven"] = (initial_capital + num_protected_shares * (premium_per_share - strike_price)) / (num_unprotected_shares - num_protected_shares)
-            elif num_protected_shares > 0:
-                # If all shares are protected, breakeven is when put profit covers initial capital loss
+            else:
                 df.loc[index, "lower_breakeven"] = strike_price - premium_per_share - (initial_capital / num_protected_shares)
-            else:
-                df.loc[index, "lower_breakeven"] = None # No puts bought
-
-            # Upper Breakeven Calculation (puts expire worthless)
-            # Assume 'cost of hedge' shares were notionally sold at current_price
-            cost_of_hedge = contracts * shares_per_contract * premium_per_share
-            shares_sold_for_hedge = cost_of_hedge / current_price if current_price > 0 else 0
-            remaining_shares_upper = num_shares - shares_sold_for_hedge
-
-            if remaining_shares_upper > 0:
-                df.loc[index, "upper_breakeven"] = initial_capital / remaining_shares_upper
-            else:
-                df.loc[index, "upper_breakeven"] = None # Notional selling of shares exceeds initial holdings
         else:
             df.loc[index, "lower_breakeven"] = None
-            df.loc[index, "upper_breakeven"] = None
+
+        # Upper Breakeven Calculation
+        if budget_source == "sell":
+            shares_sold = row["total_hedge_cost"] / current_price if current_price > 0 else 0
+            remaining_shares_upper = num_shares - shares_sold
+        else:  # budget_source == "cash"
+            remaining_shares_upper = num_shares
+        df.loc[index, "upper_breakeven"] = initial_capital / remaining_shares_upper if remaining_shares_upper > 0 else None
 
     return df

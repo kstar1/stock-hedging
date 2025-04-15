@@ -4,166 +4,7 @@
   Local URL: http://localhost:8501
   Network URL: http://10.66.195.47:8501
 
-2025-04-14 23:09:55.248 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 52, in <module>
-    active_tab = tab_labels[[tab._active for tab in tabs].index(True)] if hasattr(tabs[0], '_active') else "📊 View Stock Info"
-                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: True is not in list
-2025-04-14 23:11:14.412 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 87, in <module>
-    with tabs[0]:
-         ^^^^
-NameError: name 'tabs' is not defined. Did you mean: 'abs'?
-2025-04-14 23:11:22.833 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 86, in <module>
-    with tabs[0]:
-         ^^^^
-NameError: name 'tabs' is not defined. Did you mean: 'abs'?
-2025-04-14 23:11:32.577 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 113, in <module>
-    col8.metric("Volume", f"{info.get('volume', 'N/A'):,}")
-                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: Cannot specify ',' with 's'.
-2025-04-14 23:13:54.771 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 102, in <module>
-    col8.metric("Volume", f"{info.get('volume', 'N/A'):,}")
-                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: Cannot specify ',' with 's'.
-2025-04-14 23:14:02.831 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 102, in <module>
-    col8.metric("Volume", f"{info.get('volume', 'N/A'):,}")
-                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: Cannot specify ',' with 's'.
-2025-04-14 23:14:08.365 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 102, in <module>
-    col8.metric("Volume", f"{info.get('volume', 'N/A'):,}")
-                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: Cannot specify ',' with 's'.
-2025-04-15 00:12:30.918 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state.py", line 409, in __getitem__
-    return self._getitem(widget_id, key)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state.py", line 454, in _getitem
-    raise KeyError
-KeyError
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state_proxy.py", line 127, in __getattr__
-    return self[key]
-           ~~~~^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state_proxy.py", line 98, in __getitem__
-    return get_session_state()[key]
-           ~~~~~~~~~~~~~~~~~~~^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/safe_session_state.py", line 94, in __getitem__
-    return self._state[key]
-           ~~~~~~~~~~~^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state.py", line 411, in __getitem__
-    raise KeyError(_missing_key_error_message(key))
-KeyError: 'st.session_state has no key "selected_expiration". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 87, in <module>
-    render_put_chain_tab()
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 23, in render_put_chain_tab
-    if st.session_state.selected_expiration in expirations:
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state_proxy.py", line 129, in __getattr__
-    raise AttributeError(_missing_attr_error_message(key))
-AttributeError: st.session_state has no attribute "selected_expiration". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
-2025-04-15 00:12:52.149 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state.py", line 409, in __getitem__
-    return self._getitem(widget_id, key)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state.py", line 454, in _getitem
-    raise KeyError
-KeyError
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state_proxy.py", line 127, in __getattr__
-    return self[key]
-           ~~~~^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state_proxy.py", line 98, in __getitem__
-    return get_session_state()[key]
-           ~~~~~~~~~~~~~~~~~~~^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/safe_session_state.py", line 94, in __getitem__
-    return self._state[key]
-           ~~~~~~~~~~~^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state.py", line 411, in __getitem__
-    raise KeyError(_missing_key_error_message(key))
-KeyError: 'st.session_state has no key "selected_expiration". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 87, in <module>
-    render_put_chain_tab()
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 25, in render_put_chain_tab
-    if st.session_state.selected_expiration in expirations:
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state_proxy.py", line 129, in __getattr__
-    raise AttributeError(_missing_attr_error_message(key))
-AttributeError: st.session_state has no attribute "selected_expiration". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
-2025-04-15 00:17:35.951 Uncaught app exception
+2025-04-15 14:03:39.506 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -173,81 +14,10 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 5, in <module>
-    "ticker": DEFAULT_TICKER,
-              ^^^^^^^^^^^^^^
-NameError: name 'DEFAULT_TICKER' is not defined
-2025-04-15 00:19:31.698 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 10, in <module>
-    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 5, in <module>
-    "ticker": DEFAULT_TICKER,
-              ^^^^^^^^^^^^^^
-NameError: name 'DEFAULT_TICKER' is not defined
-2025-04-15 00:19:38.376 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 15, in <module>
-    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 5, in <module>
-    "ticker": DEFAULT_TICKER,
-              ^^^^^^^^^^^^^^
-NameError: name 'DEFAULT_TICKER' is not defined
-2025-04-15 00:19:46.145 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 15, in <module>
-    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 5, in <module>
-    "ticker": DEFAULT_TICKER,
-              ^^^^^^^^^^^^^^
-NameError: name 'DEFAULT_TICKER' is not defined
-2025-04-15 00:21:25.804 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 14, in <module>
-    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 5, in <module>
-    "ticker": DEFAULT_TICKER,
-              ^^^^^^^^^^^^^^
-NameError: name 'DEFAULT_TICKER' is not defined
-2025-04-15 00:21:29.505 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 14, in <module>
-    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 5, in <module>
-    "ticker": DEFAULT_TICKER,
-              ^^^^^^^^^^^^^^
-NameError: name 'DEFAULT_TICKER' is not defined
-2025-04-15 00:21:56.556 Uncaught app exception
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 225
+    if budget_source == "sell":
+SyntaxError: expected 'except' or 'finally' block
+2025-04-15 14:03:45.404 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -257,11 +27,10 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 5, in <module>
-    "ticker": DEFAULT_TICKER,
-              ^^^^^^^^^^^^^^
-NameError: name 'DEFAULT_TICKER' is not defined
-2025-04-15 00:21:59.765 Uncaught app exception
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 225
+    if budget_source == "sell":
+SyntaxError: expected 'except' or 'finally' block
+2025-04-15 14:05:01.571 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -271,115 +40,140 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 5, in <module>
-    "ticker": DEFAULT_TICKER,
-              ^^^^^^^^^^^^^^
-NameError: name 'DEFAULT_TICKER' is not defined
-2025-04-15 00:35:09.640 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state.py", line 409, in __getitem__
-    return self._getitem(widget_id, key)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state.py", line 454, in _getitem
-    raise KeyError
-KeyError
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state_proxy.py", line 127, in __getattr__
-    return self[key]
-           ~~~~^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state_proxy.py", line 98, in __getitem__
-    return get_session_state()[key]
-           ~~~~~~~~~~~~~~~~~~~^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/safe_session_state.py", line 94, in __getitem__
-    return self._state[key]
-           ~~~~~~~~~~~^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state.py", line 411, in __getitem__
-    raise KeyError(_missing_key_error_message(key))
-KeyError: 'st.session_state has no key "selected_expiration". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization'
-
-During handling of the above exception, another exception occurred:
-
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 225
+    if budget_source == "sell":
+    ^^
+SyntaxError: expected 'except' or 'finally' block
+2025-04-15 14:09:28.623 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
              ^^^^^^
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
     exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 87, in <module>
-    render_put_chain_tab()
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 26, in render_put_chain_tab
-    if st.session_state.selected_expiration in expirations:
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state_proxy.py", line 129, in __getattr__
-    raise AttributeError(_missing_attr_error_message(key))
-AttributeError: st.session_state has no attribute "selected_expiration". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
-2025-04-15 00:35:14.610 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state.py", line 409, in __getitem__
-    return self._getitem(widget_id, key)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state.py", line 454, in _getitem
-    raise KeyError
-KeyError
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state_proxy.py", line 127, in __getattr__
-    return self[key]
-           ~~~~^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state_proxy.py", line 98, in __getitem__
-    return get_session_state()[key]
-           ~~~~~~~~~~~~~~~~~~~^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/safe_session_state.py", line 94, in __getitem__
-    return self._state[key]
-           ~~~~~~~~~~~^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state.py", line 411, in __getitem__
-    raise KeyError(_missing_key_error_message(key))
-KeyError: 'st.session_state has no key "selected_expiration". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 87, in <module>
-    render_put_chain_tab()
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 26, in render_put_chain_tab
-    if st.session_state.selected_expiration in expirations:
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/session_state_proxy.py", line 129, in __getattr__
-    raise AttributeError(_missing_attr_error_message(key))
-AttributeError: st.session_state has no attribute "selected_expiration". Did you forget to initialize it? More info: https://docs.streamlit.io/develop/concepts/architecture/session-state#initialization
-2025-04-15 01:46:06.066 Uncaught app exception
-Traceback (most recent call last):
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
-    result = func()
-             ^^^^^^
-  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
-    exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 18, in <module>
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 150
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 153
     st.markdown("### 📘 Breakeven Explanation")
 SyntaxError: expected 'except' or 'finally' block
-2025-04-15 01:46:13.267 Uncaught app exception
+2025-04-15 14:09:31.459 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
              ^^^^^^
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
     exec(code, module.__dict__)
-  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 18, in <module>
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 150
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 153
     st.markdown("### 📘 Breakeven Explanation")
+SyntaxError: expected 'except' or 'finally' block
+2025-04-15 14:10:18.694 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
+    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 153
+    st.markdown("### 📘 Breakeven Explanation")
+    ^^
+SyntaxError: expected 'except' or 'finally' block
+2025-04-15 14:14:27.508 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
+    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 154
+    st.markdown(f'''
+SyntaxError: expected 'except' or 'finally' block
+2025-04-15 14:14:31.044 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
+    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 154
+    st.markdown(f'''
+SyntaxError: expected 'except' or 'finally' block
+2025-04-15 14:14:36.202 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
+    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 154
+    st.markdown(f'''
+SyntaxError: expected 'except' or 'finally' block
+2025-04-15 14:19:10.261 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
+    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 186
+    st.markdown(f'''
+SyntaxError: expected 'except' or 'finally' block
+2025-04-15 14:19:17.977 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
+    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 225
+    if budget_source == "sell":
+SyntaxError: expected 'except' or 'finally' block
+2025-04-15 14:19:25.758 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
+    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 225
+    if budget_source == "sell":
+    ^^
+SyntaxError: expected 'except' or 'finally' block
+2025-04-15 14:19:32.141 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
+    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 225
+    if budget_source == "sell":
+    ^^
 SyntaxError: expected 'except' or 'finally' block

@@ -88,4 +88,4 @@ Want to add CALL option support or build the Hedge Simulator tab? Fork and PR we
 
 ---
 
-Built with 💙 by [YOUR NAME]
+Built with 💙 by ~~ChatGPT + GoogleAIStudio~~  ➡️  **Kshitij Dutt**

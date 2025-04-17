@@ -1,91 +1,90 @@
-# 🛡️ TSLA Hedging Simulator (Streamlit v2)
+# 🛡️ TSLA PUT Option Hedging Simulator
 
-This is an educational tool to visualize the financial impact of protective PUT options on your Tesla (TSLA) stock holdings. The app uses real-time market data and simulates how PUT contracts can hedge your downside risk.
+This app helps you simulate the impact of **PUT options** on a portfolio of Tesla (TSLA) shares. It lets you interactively filter options, visualize breakeven zones, and simulate net profit/loss (P&L) outcomes under various hedging strategies.
 
----
-
-## 🚀 Features (v2 Streamlit Branch)
-
-- 📊 **View Stock Info** – See TSLA's current price, market cap, and 1-year chart
-- 📈 **PUT Chain Explorer** – Visualize breakeven zones for available PUT contracts
-- 💸 **Strike-based Contract Selection** – Select contracts using human-readable strike price
-- 🧠 **Breakeven Explanation** – Learn when you'd regain your initial capital if TSLA rises or falls
-- 🎨 **Volume-Colored Breakeven Plot** – Visual display of hedging zones, color-coded by option volume
+**Streamlit Version**: [Link](https://stock-hedging-xshbbnr9g3oglugxbujcpn.streamlit.app/)
 
 ---
 
-## ▶️ How to Run the App
+## ⚙️ Features
 
-### 🖥️ MacOS/Linux (Terminal)
+### 📊 1. View Stock Info
+- Displays TSLA stock price, beta, market cap
+- Price trend chart (1Y)
+
+### 📉 2. PUT Option Chain Explorer
+- Import PUT chain via `yfinance`
+- Filter contracts by:
+  - Strike range (moneyness)
+  - Volume
+  - Max # contracts
+- Select contracts to **display breakeven zones**
+- Interactive Plotly chart:
+  - Vertical bars = zones where **capital drops below initial value**
+  - Triangle markers = lower or upper breakeven only
+  - Hover tooltips for insights
+
+### 💡 3. Simulate Net P&L
+- Choose how many contracts to simulate
+- Toggle between average purchase price and market price as capital baseline
+- Preview **hedge cost**
+- Visualize:
+  - Red = Loss
+  - Green = Profit
+- Fully responsive P&L chart
+
+---
+
+## 📁 Project Structure
+
 ```bash
-# 1. Clone the repo if you haven't
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-cd YOUR_REPO_NAME
-
-# 2. Create a virtual environment (optional but recommended)
-python3 -m venv venv
-source venv/bin/activate
-
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Run the app
-streamlit run streamlit_app.py
-```
-
-### 🪟 Windows (PowerShell or CMD)
-```bash
-# 1. Clone the repo if you haven't
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
-cd YOUR_REPO_NAME
-
-# 2. Create a virtual environment (optional but recommended)
-python -m venv venv
-venv\Scripts\activate
-
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Run the app
-streamlit run streamlit_app.py
-```
-
----
-
-## 🧩 File Structure
-
-```plaintext
 ├── streamlit_app.py
-├── config/
-│   └── settings.py
-├── src/
-│   ├── data/
+├── requirements.txt
+├── src
+│   ├── data
+│   │   ├── stock_data_provider.py
 │   │   └── option_chain_provider.py
-│   ├── sim/
+│   ├── sim
 │   │   ├── analytics.py
-│   │   └── option_filters.py
-│   ├── ui/
-│   │   ├── sidebar.py
-│   │   └── tabs/
-│   │       └── put_chain_tab.py
-│   └── viz/
-│       └── option_charts.py
+│   │   ├── option_filters.py
+│   │   ├── put_breakeven_logic.py
+│   │   ├── put_pnl_simulator.py
+│   └── ui
+│       └── tabs
+│           └── put_chain_tab.py
+│   └── viz
+│       ├── put_breakeven_plot.py
+│       └── put_simulation_plot.py
 ```
 
 ---
 
-## 📎 Notes
+## 🚀 Getting Started
 
-- Data is fetched via `yfinance` (no API key required)
-- Each PUT contract assumes 100-share lot size
-- No transaction costs, taxes, or slippage modeled (yet)
+### Install
+
+```bash
+pip install -r requirements.txt
+```
+
+### Run the App
+
+```bash
+streamlit run streamlit_app.py
+```
 
 ---
 
-## 🤝 Contributing
+## 🧠 Insights
 
-Want to add CALL option support or build the Hedge Simulator tab? Fork and PR welcome!
+This tool is ideal for:
+- Visual learners who want to explore options risk
+- Investors managing drawdowns with limited capital
+- Practicing P&L modeling using real-time data
 
 ---
 
-Built with 💙 by ~~ChatGPT + GoogleAIStudio~~  ➡️  **Kshitij Dutt**
+## 🧾 Authors
+
+Built by [Kshitij Dutt](https://github.com/kstar1)
+with contributions from OpenAI's ChatGPT (logic + UI support).

@@ -1,23 +1,22 @@
-echo "# Python" >> .gitignore
-echo "__pycache__/" >> .gitignore
-echo "*.py[cod]" >> .gitignore
-echo "*$py.class" >> .gitignore
-echo "" >> .gitignore
-echo "# Environment variables" >> .gitignore
-echo ".env" >> .gitignore
-echo "" >> .gitignore
-echo "# Logs" >> .gitignore
-echo "logs/*.log" >> .gitignore
-echo "logs/*.csv" >> .gitignore 
-echo "" >> .gitignore
-echo "# Session/Cache files (if any specific patterns)" >> .gitignore
-echo "session/" >> .gitignore
-echo "*.csv" 
-echo "" >> .gitignore
-echo "# IDE / Editor specific" >> .gitignore
-echo ".vscode/" >> .gitignore
-echo ".idea/" >> .gitignore
-echo ".DS_Store" >> .gitignore
-echo "" >> .gitignore
-echo "# Streamlit" >> .gitignore
-echo ".streamlit/" >> .gitignore
+14a15
+>     st.markdown("This tool helps you evaluate the **impact of PUT options on your portfolio's performance** across future stock prices.")
+15a17
+> 
+101a104,115
+>     
+>     with st.expander("💡 What does Net P&L mean?", expanded=False):
+>         st.markdown("""
+>         This chart simulates how your portfolio value changes as the stock price moves. It accounts for:
+>         
+>         - Your existing TSLA shares
+>         - The PUT options you've selected
+>         - Whether you used **cash or stock sales** to fund them
+> 
+>         Green = Profit. Red = Loss. Use this to fine-tune your hedge strategy.
+>         """)
+> 
+125c139
+<         st.pyplot(plot_net_pnl_zone(sim_df))
+\ No newline at end of file
+---
+>         st.pyplot(plot_net_pnl_zone(sim_df))

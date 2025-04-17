@@ -22,6 +22,9 @@ def simulate_put_net_pnl(selected_puts, price_range, current_price, shares, avg_
     premium_total = (selected_puts["mid_price"] * 100 * selected_puts["contracts"]).sum()
     contracts_total = (selected_puts["contracts"]).sum()
 
+    actual_hedge_cost = (selected_puts["mid_price"] * 100 * selected_puts["contracts"]).sum()
+
+    # Initial capital is the sum of value of initial shares based on market price and the hedge budget
     initial_cap = calculate_initial_capital(
         current_price, shares, avg_price, hedge_budget,
         premium=0, contracts=contracts_total,  # total contracts used for hedge budget impact
@@ -39,7 +42,8 @@ def simulate_put_net_pnl(selected_puts, price_range, current_price, shares, avg_
                 premium=row["mid_price"],
                 contracts=row["contracts"],
                 shares=shares,
-                budget_source=budget_source
+                budget_source=budget_source,
+                hedge_budget=hedge_budget,
             )
 
         net_pnl = total_now - initial_cap

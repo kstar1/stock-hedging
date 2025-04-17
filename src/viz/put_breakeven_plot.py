@@ -1,57 +1,63 @@
-import matplotlib.pyplot as plt
-import matplotlib.cm as cm
-import numpy as np
+import plotly.graph_objects as go
 import pandas as pd
 
-def plot_put_loss_zones(df, current_price):
-    '''
-    Visualizes loss-making breakeven zones for each PUT strike.
-    df is expected to come from analytics.compute_breakeven_zones()
-    and must include:
-        ['strike', 'lower_breakeven', 'upper_breakeven', 'volume']
-    '''
+def plot_put_loss_zones(df: pd.DataFrame, current_price: float):
+    """
+    Interactive breakeven zone visualization using Plotly.
 
+    Args:
+        df: DataFrame with strike, volume, lower_breakeven, upper_breakeven
+        current_price: float
+
+    Returns:
+        Plotly Figure
+    """
     df = df.copy()
-    df = df[df['contracts'] > 0]  # Only plot contracts user can afford
-    df.dropna(subset=['strike'], inplace=True)
+    df = df[df['contracts'] > 0].dropna(subset=["strike"])
+    
+    fig = go.Figure()
 
-    fig, ax = plt.subplots(figsize=(10, 6))
-
-    strikes = df['strike'].astype(float)
-    vol = df['volume'].fillna(0).astype(float)
-    norm = plt.Normalize(vol.min(), vol.max())
-    cmap = cm.get_cmap("viridis")
-
+    # Add each breakeven as a line or point
     for _, row in df.iterrows():
         strike = row["strike"]
-        vol = row["volume"]
-        ub = row["upper_breakeven"]
         lb = row["lower_breakeven"]
-
-        # Normalize volume for colormap
-        vol_norm = (vol - df['volume'].min()) / (df['volume'].max() - df['volume'].min() + 1e-5)
-        color = cmap(norm(vol)) if not np.isnan(vol) else 'gray'
+        ub = row["upper_breakeven"]
+        vol = row["volume"]
+        color = "rgba(0, 150, 255, 0.6)"  # color uniform for now
 
         if pd.notna(lb) and pd.notna(ub):
-            ax.vlines(x=strike, ymin=lb, ymax=ub, color=color, linewidth=6)
+            fig.add_trace(go.Scatter(
+                x=[strike, strike], y=[lb, ub],
+                mode='lines',
+                line=dict(width=6, color=color),
+                name=f"{strike} | Vol: {vol}",
+                hovertemplate=f"<b>Strike: ${strike}</b><br>Volume: {vol}<br>Lower: {lb:.2f}<br>Upper: {ub:.2f}"
+            ))
         elif pd.notna(lb):
-            ax.plot(strike, lb, 'o', color=color, markersize=12)
+            fig.add_trace(go.Scatter(
+                x=[strike], y=[lb],
+                mode="markers",
+                marker=dict(size=12, color="orange", symbol="triangle-down"),
+                name=f"{strike} | Vol: {vol}",
+                hovertemplate=f"<b>Strike: ${strike}</b><br>Only Lower Breakeven: {lb:.2f}<br>Volume: {vol}"
+            ))
         elif pd.notna(ub):
-            ax.plot(strike, ub, 'o', color=color, markersize=12)
-        else:
-            # Optional: annotate contract with no breakeven zone
-            note = row.get("breakeven_note", "")
-            ax.annotate("⚠", (strike, 5), rotation=90, fontsize=10, ha="center")
+            fig.add_trace(go.Scatter(
+                x=[strike], y=[ub],
+                mode="markers",
+                marker=dict(size=12, color="purple", symbol="triangle-up"),
+                name=f"{strike} | Vol: {vol}",
+                hovertemplate=f"<b>Strike: ${strike}</b><br>Only Upper Breakeven: {ub:.2f}<br>Volume: {vol}"
+            ))
 
-    ax.axhline(current_price, color='black', linestyle='--', label='Current TSLA Price')
-    ax.set_xlabel("Strike Price")
-    ax.set_ylabel("TSLA Market Price")
-    ax.set_title("Loss Zones by PUT Strike Price")
-    ax.grid(True)
+    # Horizontal line = current price
+    fig.add_hline(y=current_price, line_dash="dot", line_color="black", annotation_text="Current Price")
 
-    sm = cm.ScalarMappable(cmap=cmap, norm=norm)
-    sm.set_array([])
-    cbar = plt.colorbar(sm, ax=ax)
-    cbar.set_label("Volume (Shading)")
+    fig.update_layout(
+        title="Loss Zones by PUT Strike Price",
+        xaxis_title="Strike Price ($)",
+        yaxis_title="Market Price ($)",
+        height=600
+    )
 
     return fig

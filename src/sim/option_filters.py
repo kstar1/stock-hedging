@@ -4,7 +4,7 @@ def filter_puts(
     puts_df: pd.DataFrame,
     current_price: float,
     min_volume: int = 100,
-    moneyness_range: tuple = (0.90, 1.10)
+    moneyness_range: tuple = (0.8, 1.3)
 ) -> pd.DataFrame:
     """
     Filter PUT options for hedging based on:
@@ -17,6 +17,8 @@ def filter_puts(
     # Calculate mid price if not already present
     if "mid_price" not in puts_df.columns:
         puts_df["mid_price"] = (puts_df["bid"] + puts_df["ask"]) / 2
+        puts_df["mid_price"] = puts_df["mid_price"].fillna(puts_df["lastPrice"])
+        puts_df.loc[puts_df["mid_price"] == 0, "mid_price"] = puts_df["lastPrice"]
 
     puts_df["intrinsic_value"] = puts_df["strike"] - current_price
     puts_df["time_value"] = puts_df["mid_price"] - puts_df["intrinsic_value"]

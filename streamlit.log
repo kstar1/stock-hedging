@@ -2,9 +2,9 @@
   You can now view your Streamlit app in your browser.
 
   Local URL: http://localhost:8501
-  Network URL: http://10.66.195.47:8501
+  Network URL: http://192.168.4.51:8501
 
-2025-04-15 14:03:39.506 Uncaught app exception
+2025-04-17 02:33:56.336 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -14,10 +14,10 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 225
-    if budget_source == "sell":
-SyntaxError: expected 'except' or 'finally' block
-2025-04-15 14:03:45.404 Uncaught app exception
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 7, in <module>
+    from src.sim.put_breakeven_logic import calculate_put_values
+ImportError: cannot import name 'calculate_put_values' from 'src.sim.put_breakeven_logic' (/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py)
+2025-04-17 02:36:09.321 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -27,10 +27,11 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 225
-    if budget_source == "sell":
-SyntaxError: expected 'except' or 'finally' block
-2025-04-15 14:05:01.571 Uncaught app exception
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 61
+    )
+    ^
+SyntaxError: unmatched ')'
+2025-04-17 02:36:15.379 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -40,11 +41,82 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 225
-    if budget_source == "sell":
-    ^^
-SyntaxError: expected 'except' or 'finally' block
-2025-04-15 14:09:28.623 Uncaught app exception
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 61
+    )
+    ^
+SyntaxError: unmatched ')'
+2025-04-17 02:42:19.244 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 49, in render_put_chain_tab
+    filtered_puts = filter_puts(
+                    ^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/sim/option_filters.py", line 21, in filter_puts
+    puts_df["mid_price"] = puts_df["mid_price"].replace(0, puts_df["lastPrice"])
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/pandas/core/generic.py", line 8125, in replace
+    raise ValueError(
+ValueError: Series.replace cannot use dict-value and non-None to_replace
+2025-04-17 02:45:49.012 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 33, in render_put_chain_tab
+    min_value=moneyness_min,
+              ^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'moneyness_min' where it is not associated with a value
+2025-04-17 02:47:12.022 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 32, in render_put_chain_tab
+    strike_prices = filtered_puts["strike"].dropna().astype(float)
+                    ^^^^^^^^^^^^^
+UnboundLocalError: cannot access local variable 'filtered_puts' where it is not associated with a value
+/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py:68: RuntimeWarning: The iteration is not making good progress, as measured by the 
+  improvement from the last ten iterations.
+  lower_result = fsolve(difference, guess)[0]
+/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py:68: RuntimeWarning: The iteration is not making good progress, as measured by the 
+  improvement from the last ten iterations.
+  lower_result = fsolve(difference, guess)[0]
+/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py:68: RuntimeWarning: The iteration is not making good progress, as measured by the 
+  improvement from the last ten iterations.
+  lower_result = fsolve(difference, guess)[0]
+/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py:68: RuntimeWarning: The iteration is not making good progress, as measured by the 
+  improvement from the last ten iterations.
+  lower_result = fsolve(difference, guess)[0]
+/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py:68: RuntimeWarning: The iteration is not making good progress, as measured by the 
+  improvement from the last ten iterations.
+  lower_result = fsolve(difference, guess)[0]
+/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py:68: RuntimeWarning: The iteration is not making good progress, as measured by the 
+  improvement from the last ten iterations.
+  lower_result = fsolve(difference, guess)[0]
+/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py:68: RuntimeWarning: The iteration is not making good progress, as measured by the 
+  improvement from the last ten iterations.
+  lower_result = fsolve(difference, guess)[0]
+/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py:68: RuntimeWarning: The iteration is not making good progress, as measured by the 
+  improvement from the last ten iterations.
+  lower_result = fsolve(difference, guess)[0]
+/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py:68: RuntimeWarning: The iteration is not making good progress, as measured by the 
+  improvement from the last ten iterations.
+  lower_result = fsolve(difference, guess)[0]
+2025-04-17 12:40:18.806 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -54,10 +126,24 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 153
-    st.markdown("### 📘 Breakeven Explanation")
-SyntaxError: expected 'except' or 'finally' block
-2025-04-15 14:09:31.459 Uncaught app exception
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 149
+    )
+    ^
+SyntaxError: positional argument follows keyword argument
+2025-04-17 12:40:25.435 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 141, in render_put_chain_tab
+    breakeven_df = compute_breakeven_zones(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: compute_breakeven_zones() got an unexpected keyword argument 'use_market_price'
+2025-04-17 12:40:53.959 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -67,10 +153,29 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 153
-    st.markdown("### 📘 Breakeven Explanation")
-SyntaxError: expected 'except' or 'finally' block
-2025-04-15 14:10:18.694 Uncaught app exception
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 6, in <module>
+    from src.sim.analytics import compute_breakeven_zones
+  File "/Users/kshitijdutt/stock-hedging/src/sim/analytics.py", line 5
+    def compute_breakeven_zones(df, current_price, num_shares, avg_price, hedge_budget, budget_source, use_market_price:
+                               ^
+SyntaxError: '(' was never closed
+2025-04-17 12:41:29.591 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 141, in render_put_chain_tab
+    breakeven_df = compute_breakeven_zones(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/sim/analytics.py", line 25, in compute_breakeven_zones
+    lb, ub, reason = solve_breakeven(
+                     ^^^^^^^^^^^^^^^^
+TypeError: solve_breakeven() got an unexpected keyword argument 'use_market_price'
+2025-04-17 12:41:34.182 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -80,11 +185,15 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 153
-    st.markdown("### 📘 Breakeven Explanation")
-    ^^
-SyntaxError: expected 'except' or 'finally' block
-2025-04-15 14:14:27.508 Uncaught app exception
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 6, in <module>
+    from src.sim.analytics import compute_breakeven_zones
+  File "/Users/kshitijdutt/stock-hedging/src/sim/analytics.py", line 3, in <module>
+    from src.sim.put_breakeven_logic import solve_breakeven
+  File "/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py", line 26
+    def solve_breakeven(price, strike, premium, contracts, shares, avg_price, hedge_budget, budget_source, mode="both",use_market_price):
+                                                                                                                       ^^^^^^^^^^^^^^^^
+SyntaxError: parameter without a default follows parameter with a default
+2025-04-17 12:41:35.974 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -94,10 +203,15 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 154
-    st.markdown(f'''
-SyntaxError: expected 'except' or 'finally' block
-2025-04-15 14:14:31.044 Uncaught app exception
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 6, in <module>
+    from src.sim.analytics import compute_breakeven_zones
+  File "/Users/kshitijdutt/stock-hedging/src/sim/analytics.py", line 3, in <module>
+    from src.sim.put_breakeven_logic import solve_breakeven
+  File "/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py", line 26
+    def solve_breakeven(price, strike, premium, contracts, shares, avg_price, hedge_budget, budget_source, mode="both", use_market_price):
+                                                                                                                        ^^^^^^^^^^^^^^^^
+SyntaxError: parameter without a default follows parameter with a default
+2025-04-17 12:42:43.405 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -107,10 +221,15 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 154
-    st.markdown(f'''
-SyntaxError: expected 'except' or 'finally' block
-2025-04-15 14:14:36.202 Uncaught app exception
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 6, in <module>
+    from src.sim.analytics import compute_breakeven_zones
+  File "/Users/kshitijdutt/stock-hedging/src/sim/analytics.py", line 3, in <module>
+    from src.sim.put_breakeven_logic import solve_breakeven
+  File "/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py", line 23
+    def solve_breakeven(price, strike, premium, contracts, shares, avg_price, hedge_budget, budget_source, mode="both", use_market_price):
+                                                                                                                        ^^^^^^^^^^^^^^^^
+SyntaxError: parameter without a default follows parameter with a default
+2025-04-17 12:45:38.854 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -120,10 +239,15 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 154
-    st.markdown(f'''
-SyntaxError: expected 'except' or 'finally' block
-2025-04-15 14:19:10.261 Uncaught app exception
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 6, in <module>
+    from src.sim.analytics import compute_breakeven_zones
+  File "/Users/kshitijdutt/stock-hedging/src/sim/analytics.py", line 3, in <module>
+    from src.sim.put_breakeven_logic import solve_breakeven
+  File "/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py", line 22
+    def solve_breakeven(price, strike, premium, contracts, shares, avg_price, hedge_budget, budget_source, mode="both", use_market_price):
+                                                                                                                        ^^^^^^^^^^^^^^^^
+SyntaxError: parameter without a default follows parameter with a default
+2025-04-17 12:46:20.136 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -133,10 +257,15 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 186
-    st.markdown(f'''
-SyntaxError: expected 'except' or 'finally' block
-2025-04-15 14:19:17.977 Uncaught app exception
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 6, in <module>
+    from src.sim.analytics import compute_breakeven_zones
+  File "/Users/kshitijdutt/stock-hedging/src/sim/analytics.py", line 3, in <module>
+    from src.sim.put_breakeven_logic import solve_breakeven
+  File "/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py", line 22
+    def solve_breakeven(price, strike, premium, contracts, shares, avg_price, hedge_budget, budget_source, mode="both", use_market_price):
+                                                                                                                        ^^^^^^^^^^^^^^^^
+SyntaxError: parameter without a default follows parameter with a default
+2025-04-17 12:46:21.606 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -146,10 +275,15 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 225
-    if budget_source == "sell":
-SyntaxError: expected 'except' or 'finally' block
-2025-04-15 14:19:25.758 Uncaught app exception
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 6, in <module>
+    from src.sim.analytics import compute_breakeven_zones
+  File "/Users/kshitijdutt/stock-hedging/src/sim/analytics.py", line 3, in <module>
+    from src.sim.put_breakeven_logic import solve_breakeven
+  File "/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py", line 22
+    def solve_breakeven(price, strike, premium, contracts, shares, avg_price, hedge_budget, budget_source, mode="both", use_market_price):
+                                                                                                                        ^^^^^^^^^^^^^^^^
+SyntaxError: parameter without a default follows parameter with a default
+2025-04-17 12:48:22.493 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -159,11 +293,15 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 225
-    if budget_source == "sell":
-    ^^
-SyntaxError: expected 'except' or 'finally' block
-2025-04-15 14:19:32.141 Uncaught app exception
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 6, in <module>
+    from src.sim.analytics import compute_breakeven_zones
+  File "/Users/kshitijdutt/stock-hedging/src/sim/analytics.py", line 3, in <module>
+    from src.sim.put_breakeven_logic import solve_breakeven
+  File "/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py", line 22
+    def solve_breakeven(price, strike, premium, contracts, shares, avg_price, hedge_budget, budget_source, mode="both", use_market_price):
+                                                                                                                        ^^^^^^^^^^^^^^^^
+SyntaxError: parameter without a default follows parameter with a default
+2025-04-17 12:49:19.080 Uncaught app exception
 Traceback (most recent call last):
   File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
     result = func()
@@ -173,7 +311,845 @@ Traceback (most recent call last):
   File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
     from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 225
-    if budget_source == "sell":
-    ^^
-SyntaxError: expected 'except' or 'finally' block
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 6, in <module>
+    from src.sim.analytics import compute_breakeven_zones
+  File "/Users/kshitijdutt/stock-hedging/src/sim/analytics.py", line 3, in <module>
+    from src.sim.put_breakeven_logic import solve_breakeven
+  File "/Users/kshitijdutt/stock-hedging/src/sim/put_breakeven_logic.py", line 22
+    def solve_breakeven(price, strike, premium, contracts, shares, avg_price, hedge_budget, budget_source, mode="both", use_market_price):
+                                                                                                                        ^^^^^^^^^^^^^^^^
+SyntaxError: parameter without a default follows parameter with a default
+/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py:173: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) DejaVu Sans.
+  fig.savefig(image, **kwargs)
+/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py:173: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) DejaVu Sans.
+  fig.savefig(image, **kwargs)
+/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py:173: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) DejaVu Sans.
+  fig.savefig(image, **kwargs)
+/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py:173: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) DejaVu Sans.
+  fig.savefig(image, **kwargs)
+/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py:173: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) DejaVu Sans.
+  fig.savefig(image, **kwargs)
+/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py:173: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) DejaVu Sans.
+  fig.savefig(image, **kwargs)
+/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py:173: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) DejaVu Sans.
+  fig.savefig(image, **kwargs)
+/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py:173: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) DejaVu Sans.
+  fig.savefig(image, **kwargs)
+/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py:173: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) DejaVu Sans.
+  fig.savefig(image, **kwargs)
+/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py:173: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) DejaVu Sans.
+  fig.savefig(image, **kwargs)
+/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py:173: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) DejaVu Sans.
+  fig.savefig(image, **kwargs)
+/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py:173: UserWarning: Glyph 128200 (\N{CHART WITH UPWARDS TREND}) missing from font(s) DejaVu Sans.
+  fig.savefig(image, **kwargs)
+2025-04-17 13:34:01.312 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 101, in render_put_chain_tab
+    st.pyplot(plot_put_loss_zones(chart_df, current_price))
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py", line 122, in pyplot
+    marshall(
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py", line 173, in marshall
+    fig.savefig(image, **kwargs)
+    ^^^^^^^^^^^
+AttributeError: 'Figure' object has no attribute 'savefig'
+2025-04-17 13:34:16.830 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 101, in render_put_chain_tab
+    st.pyplot(plot_put_loss_zones(chart_df, current_price))
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py", line 122, in pyplot
+    marshall(
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py", line 173, in marshall
+    fig.savefig(image, **kwargs)
+    ^^^^^^^^^^^
+AttributeError: 'Figure' object has no attribute 'savefig'
+2025-04-17 13:35:09.963 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 140, in render_put_chain_tab
+    st.pyplot(plot_net_pnl_zone(sim_df))
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py", line 122, in pyplot
+    marshall(
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py", line 173, in marshall
+    fig.savefig(image, **kwargs)
+    ^^^^^^^^^^^
+AttributeError: 'Figure' object has no attribute 'savefig'
+2025-04-17 13:35:10.569 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 139, in render_put_chain_tab
+    st.pyplot(plot_net_pnl_zone(sim_df))
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py", line 122, in pyplot
+    marshall(
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/pyplot.py", line 173, in marshall
+    fig.savefig(image, **kwargs)
+    ^^^^^^^^^^^
+AttributeError: 'Figure' object has no attribute 'savefig'
+2025-04-17 14:16:48.321 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
+    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 9, in <module>
+    from src.sim.put_simulation_logic import simulate_put_net_pnl
+  File "/Users/kshitijdutt/stock-hedging/src/sim/put_simulation_logic.py", line 46
+    hedge_budget=actual_hedge_cost  # ✅ pass actual cost
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: keyword argument repeated: hedge_budget
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json
+Warning: Filter config file not found at /Users/kshitijdutt/stock-hedging/config/config_filters.json2025-04-17 14:48:46.456 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 140, in render_put_chain_tab
+    sim_df = simulate_put_net_pnl(selected_df, price_range, current_price, num_shares, avg_price, hedge_budget,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/sim/put_simulation_logic.py", line 39, in simulate_put_net_pnl
+    total_now += calculate_now_capital_multiple_puts(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'calculate_now_capital_multiple_puts' is not defined
+2025-04-17 14:49:05.451 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 140, in render_put_chain_tab
+    sim_df = simulate_put_net_pnl(selected_df, price_range, current_price, num_shares, avg_price, hedge_budget,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/sim/put_simulation_logic.py", line 39, in simulate_put_net_pnl
+    total_now += calculate_now_capital_multiple_puts(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'calculate_now_capital_multiple_puts' is not defined
+2025-04-17 16:55:34.964 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 144, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 214, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple identical `st.button` widgets with the
+same generated key.
+
+When a widget is created, it's assigned an internal key based on
+its structure. Multiple widgets with an identical structure will
+result in the same internal key, which causes this error.
+
+To fix this error, please pass a unique `key` argument to
+`st.button`.
+2025-04-17 16:55:50.531 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 144, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 214, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple identical `st.button` widgets with the
+same generated key.
+
+When a widget is created, it's assigned an internal key based on
+its structure. Multiple widgets with an identical structure will
+result in the same internal key, which causes this error.
+
+To fix this error, please pass a unique `key` argument to
+`st.button`.
+2025-04-17 16:56:17.421 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 144, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 214, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple identical `st.button` widgets with the
+same generated key.
+
+When a widget is created, it's assigned an internal key based on
+its structure. Multiple widgets with an identical structure will
+result in the same internal key, which causes this error.
+
+To fix this error, please pass a unique `key` argument to
+`st.button`.
+2025-04-17 16:56:18.205 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 144, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 214, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple identical `st.button` widgets with the
+same generated key.
+
+When a widget is created, it's assigned an internal key based on
+its structure. Multiple widgets with an identical structure will
+result in the same internal key, which causes this error.
+
+To fix this error, please pass a unique `key` argument to
+`st.button`.
+2025-04-17 16:56:22.432 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 144, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 214, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple identical `st.button` widgets with the
+same generated key.
+
+When a widget is created, it's assigned an internal key based on
+its structure. Multiple widgets with an identical structure will
+result in the same internal key, which causes this error.
+
+To fix this error, please pass a unique `key` argument to
+`st.button`.
+2025-04-17 16:56:23.599 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 144, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 214, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple identical `st.button` widgets with the
+same generated key.
+
+When a widget is created, it's assigned an internal key based on
+its structure. Multiple widgets with an identical structure will
+result in the same internal key, which causes this error.
+
+To fix this error, please pass a unique `key` argument to
+`st.button`.
+2025-04-17 16:56:24.731 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 144, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 214, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple identical `st.button` widgets with the
+same generated key.
+
+When a widget is created, it's assigned an internal key based on
+its structure. Multiple widgets with an identical structure will
+result in the same internal key, which causes this error.
+
+To fix this error, please pass a unique `key` argument to
+`st.button`.
+2025-04-17 16:57:56.147 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 144, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L", key="simulate_net_pnl")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 202, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='simulate_net_pnl'`.
+
+To fix this, please make sure that the `key` argument is unique for each
+widget you create.
+2025-04-17 16:58:20.826 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 144, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L", key="simulate_net_pnl")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 202, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='simulate_net_pnl'`.
+
+To fix this, please make sure that the `key` argument is unique for each
+widget you create.
+2025-04-17 16:58:58.775 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 144, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L", key="simulate_net_pnl")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 202, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='simulate_net_pnl'`.
+
+To fix this, please make sure that the `key` argument is unique for each
+widget you create.
+2025-04-17 17:00:11.384 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 151, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L", key="simulate_net_pnl")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 202, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='simulate_net_pnl'`.
+
+To fix this, please make sure that the `key` argument is unique for each
+widget you create.
+2025-04-17 17:00:16.046 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 148, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L", key="simulate_net_pnl")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 202, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='simulate_net_pnl'`.
+
+To fix this, please make sure that the `key` argument is unique for each
+widget you create.
+2025-04-17 17:00:23.262 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 149, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L", key="simulate_net_pnl")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 202, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='simulate_net_pnl'`.
+
+To fix this, please make sure that the `key` argument is unique for each
+widget you create.
+2025-04-17 17:00:53.184 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 150, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L", key="simulate_net_pnl")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 202, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='simulate_net_pnl'`.
+
+To fix this, please make sure that the `key` argument is unique for each
+widget you create.
+2025-04-17 17:01:00.151 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 148, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L", key="simulate_net_pnl")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 202, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='simulate_net_pnl'`.
+
+To fix this, please make sure that the `key` argument is unique for each
+widget you create.
+2025-04-17 17:01:11.537 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 148, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L", key="simulate_net_pnl")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 202, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='simulate_net_pnl'`.
+
+To fix this, please make sure that the `key` argument is unique for each
+widget you create.
+2025-04-17 17:01:26.524 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 148, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L", key="simulate_net_pnl")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 202, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='simulate_net_pnl'`.
+
+To fix this, please make sure that the `key` argument is unique for each
+widget you create.
+2025-04-17 17:01:37.154 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 148, in render_put_chain_tab
+    simulate = st.button("📊 Simulate Net P&L", key="simulate_net_pnl")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 408, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 181, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 818, in _button
+    button_state = register_widget(
+                   ^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 169, in register_widget
+    return register_widget_from_metadata(metadata, ctx, widget_func_name, element_type)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/state/widgets.py", line 202, in register_widget_from_metadata
+    raise DuplicateWidgetID(
+streamlit.errors.DuplicateWidgetID: There are multiple widgets with the same `key='simulate_net_pnl'`.
+
+To fix this, please make sure that the `key` argument is unique for each
+widget you create.
+2025-04-17 17:16:12.716 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 93, in render_put_chain_tab
+    selected_labels_set = set(selected_labels)
+                              ^^^^^^^^^^^^^^^
+NameError: name 'selected_labels' is not defined. Did you mean: 'selected_exp'?
+2025-04-17 17:16:16.882 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 93, in render_put_chain_tab
+    selected_labels_set = set(selected_labels)
+                              ^^^^^^^^^^^^^^^
+NameError: name 'selected_labels' is not defined. Did you mean: 'selected_exp'?

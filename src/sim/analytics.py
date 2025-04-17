@@ -1,33 +1,31 @@
+
 import pandas as pd
-import numpy as np
 from src.sim.put_breakeven_logic import solve_breakeven
 
-def compute_breakeven_zones(df, current_price, num_shares, avg_price, hedge_budget, budget_source, use_market_price):
+def compute_breakeven_zones(df: pd.DataFrame, current_price: float, num_shares: float,
+                             avg_price: float, hedge_budget: float, budget_source: str,
+                             use_market_price: bool = True) -> pd.DataFrame:
     df = df.copy()
-    shares_per_contract = 100
-    initial_capital = num_shares * avg_price
+    df["contracts"] = (hedge_budget // (df["mid_price"] * 100)).astype(int)
+    df["total_cost"] = df["contracts"] * df["mid_price"] * 100
 
-    df["hedge_cost"] = df["mid_price"] * shares_per_contract
-    df["contracts"] = (hedge_budget // df["hedge_cost"]).astype(int)
-    df["total_hedge_cost"] = df["contracts"] * df["hedge_cost"]
+    breakevens = df.apply(
+        lambda row: solve_breakeven(
+            price=current_price,
+            strike=row["strike"],
+            premium=row["mid_price"],
+            contracts=row["contracts"],
+            shares=num_shares,
+            avg_price=avg_price,
+            hedge_budget=hedge_budget,
+            budget_source=budget_source,
+            use_market_price=use_market_price
+        ),
+        axis=1
+    )
 
-    df["lower_breakeven"] = np.nan
-    df["upper_breakeven"] = np.nan
-
-    for index, row in df.iterrows():
-        contracts = row["contracts"]
-        strike_price = row["strike"]
-        premium_per_share = row["mid_price"]
-
-        if contracts > 0:
-            # Use new solve_breakeven function from logic module
-            df["breakeven_note"] = ""
-            lb, ub, reason = solve_breakeven(
-                current_price, strike_price, premium_per_share, contracts,
-                num_shares, avg_price, hedge_budget, budget_source, mode="both",use_market_price=use_market_price
-            )
-            df.loc[index, "lower_breakeven"] = lb
-            df.loc[index, "upper_breakeven"] = ub
-            df.loc[index, "breakeven_note"] = reason
+    df["lower_breakeven"] = [b[0] for b in breakevens]
+    df["upper_breakeven"] = [b[1] for b in breakevens]
+    df["explanation"] = [b[2] for b in breakevens]
 
     return df

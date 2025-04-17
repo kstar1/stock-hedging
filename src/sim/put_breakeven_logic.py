@@ -6,18 +6,21 @@ def calculate_initial_capital(price, shares, avg_price, hedge_budget, premium, c
     initial_cap = share_value + hedge_budget if budget_source == "cash" else share_value
     return initial_cap
 
-def calculate_now_capital(price, strike, premium, contracts, shares, budget_source):
+def calculate_now_capital(price, strike, premium, contracts, shares, budget_source, hedge_budget=0):
     hedge_cost = premium * contracts * 100
     put_payoff = max(0, (strike - premium - price)) * contracts * 100
 
     if budget_source == "sell":
         shares_sold = hedge_cost / price
         remaining_shares = shares - shares_sold
-    else:
-        remaining_shares = shares
+        stock_value = remaining_shares * price
+        return put_payoff + stock_value
 
-    stock_value = remaining_shares * price
-    return put_payoff + stock_value
+    elif budget_source == "cash":
+        remaining_shares = shares
+        stock_value = remaining_shares * price
+        leftover_cash = hedge_budget - hedge_cost if hedge_budget >= hedge_cost else 0
+        return put_payoff + stock_value + leftover_cash
 
 def solve_breakeven(price, strike, premium, contracts, shares, avg_price, hedge_budget, budget_source, mode="both", use_market_price=True):
     try:
@@ -38,7 +41,7 @@ def solve_breakeven(price, strike, premium, contracts, shares, avg_price, hedge_
         def difference(p):
             if p <= 0:
                 return 1e6
-            capital_now = calculate_now_capital(p, strike, premium, contracts, shares, budget_source)
+            capital_now = calculate_now_capital(p, strike, premium, contracts, shares, budget_source, hedge_budget)
             return capital_now - initial_cap
 
         lower_breakeven = None

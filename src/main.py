@@ -72,7 +72,7 @@ def main():
             expirations = get_option_expirations()
             print(expirations)
             selected_exp = input("\nEnter expiration date (YYYY-MM-DD): ")
-            current_puts = get_put_option_chain(expiration=selected_exp, save_to_file=True)
+            #current_puts = get_put_option_chain(expiration=selected_exp, save_to_file=True)
             print(f"\n✅ PUT chain saved to raw_put_chain_{selected_exp}.csv")
 
         elif choice == "5":

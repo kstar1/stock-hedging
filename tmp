@@ -1,22 +1,30 @@
-14a15
->     st.markdown("This tool helps you evaluate the **impact of PUT options on your portfolio's performance** across future stock prices.")
-15a17
-> 
-101a104,115
->     
->     with st.expander("💡 What does Net P&L mean?", expanded=False):
->         st.markdown("""
->         This chart simulates how your portfolio value changes as the stock price moves. It accounts for:
->         
->         - Your existing TSLA shares
->         - The PUT options you've selected
->         - Whether you used **cash or stock sales** to fund them
-> 
->         Green = Profit. Red = Loss. Use this to fine-tune your hedge strategy.
->         """)
-> 
-125c139
-<         st.pyplot(plot_net_pnl_zone(sim_df))
-\ No newline at end of file
----
->         st.pyplot(plot_net_pnl_zone(sim_df))
+./README_TSLA_Streamlit_v2.md:1:# 🛡️ TSLA Hedging Simulator (Streamlit v2)
+./README_TSLA_Streamlit_v2.md:3:This is an educational tool to visualize the financial impact of protective PUT options on your Tesla (TSLA) stock holdings. The app uses real-time market data and simulates how PUT contracts can hedge your downside risk.
+./README_TSLA_Streamlit_v2.md:9:- 📊 **View Stock Info** – See TSLA's current price, market cap, and 1-year chart
+./README_TSLA_Streamlit_v2.md:12:- 🧠 **Breakeven Explanation** – Learn when you'd regain your initial capital if TSLA rises or falls
+Binary file ./config/__pycache__/settings.cpython-312.pyc matches
+./config/settings.py:23:DEFAULT_TICKER = "TSLA"
+./test_plot_edge_cases_breakeven.py:13:price = 260  # current TSLA price
+./test_option_chain_provider.py:5:def test_get_option_expirations(ticker="TSLA"):
+./test_option_chain_provider.py:14:def test_get_put_option_chain(ticker="TSLA"):
+./dev_test_put_tab.py:5:st.session_state.ticker = "TSLA"
+Binary file ./.git/index matches
+./generate_tsla_snapshot.sh:5:echo "📦 Generating TSLA app code snapshot..."
+./generate_tsla_snapshot.sh:8:echo "=== TSLA App Snapshot: $(date) ===" > "$output_file"
+Binary file ./src/__pycache__/logger.cpython-312.pyc matches
+Binary file ./src/__pycache__/hedge_simulator.cpython-312.pyc matches
+Binary file ./src/__pycache__/data_fetcher.cpython-312.pyc matches
+Binary file ./src/__pycache__/visualizer.cpython-312.pyc matches
+./src/viz/simulation_plots.py:22:    plt.xlabel("Future TSLA Price ($)")
+./src/viz/simulation_plots.py:43:    plt.xlabel("Future TSLA Price ($)")
+Binary file ./src/viz/__pycache__/simulation_plots.cpython-312.pyc matches
+./src/viz/put_breakeven_plot_matplotlib_version.py:46:    ax.axhline(current_price, color='black', linestyle='--', label='Current TSLA Price')
+./src/viz/put_breakeven_plot_matplotlib_version.py:48:    ax.set_ylabel("TSLA Market Price")
+Binary file ./src/sim/__pycache__/hedge_simulator.cpython-312.pyc matches
+./src/sim/hedge_simulator.py:7:    Returns a DataFrame with unhedged and hedged P&L across a range of future TSLA prices.
+./src/data/stock_data_provider.py:6:def get_stock_info(ticker_symbol="TSLA"):
+./src/data/stock_data_provider.py:18:def get_historical_price(ticker_symbol="TSLA", period="5d"):
+./src/data/option_chain_provider.py:5:def get_option_expirations(ticker_symbol="TSLA"):
+./src/data/option_chain_provider.py:10:def get_put_option_chain(ticker_symbol="TSLA", expiration=None):
+Binary file ./src/data/__pycache__/stock_data_provider.cpython-312.pyc matches
+Binary file ./src/data/__pycache__/option_chain_provider.cpython-312.pyc matches

@@ -10,15 +10,27 @@ from src.viz.put_simulation_plot import plot_net_pnl_zone
 from src.sim.put_pnl_simulator import simulate_put_pnl_strict
 
 def render_put_chain_tab():
-    st.header("📉 PUT Option Chain Explorer")
-    st.markdown("This tool helps you evaluate the **impact of PUT options on your portfolio's performance** across future stock prices.")
-
+    
     ticker = st.session_state.ticker
     current_price = st.session_state.stock_info.get("current_price", 0)
     num_shares = st.session_state.get("shares", 0)
     avg_price = st.session_state.get("avg_price", 0)
     hedge_budget = st.session_state.get("hedge_budget", 0)
     budget_source = st.session_state.get("budget_source", "cash")
+
+    st.header("📉 PUT Option Chain Explorer")
+    st.markdown(f"""
+Welcome to the **PUT Option Chain Explorer** for **{ticker}**.
+
+This section helps you:
+- Browse available PUT options for your selected stock
+- Filter contracts based on **moneyness**, **volume**, and **budget**
+- Understand which PUTs can **protect your portfolio** during a market decline
+
+The main chart visualizes the **breakeven zones** for each contract:
+- 📉 *Lower Breakeven* – how far the stock must fall for your hedge to profit
+- 📈 *Upper Breakeven* – when remaining stock value alone recovers your capital
+    """)
 
     expirations = get_option_expirations(ticker)
     if not expirations:
@@ -88,10 +100,12 @@ def render_put_chain_tab():
         - Each lower triangle represents the minimum value of stock price where the PUT option is profitable.
         - The **upper breakeven** is when remaining stocks alone recover initial investment.
         - The **lower breakeven** is when the PUT option protects enough to cover the losses.
+        - **Bonus** : Click on a legend item to hide/show the corresponding PUT contract.
+        - **Note** : The chart is interactive! Hover over the lines (ends) or markers to see the exact values.\n
         ⚠️ *Only contracts within your hedge budget are included.*
         """)
 
-    st.markdown("### 📌 Select Contracts to Show in Chart (`{Strike | Premium}`)")
+    st.markdown("### 📌 Select Contracts to Show in Chart (`Strike($) | Premium($)`)")
 
     selected_labels = []
     cols = st.columns(4)
@@ -99,7 +113,7 @@ def render_put_chain_tab():
         strike = row["strike"]
         premium = row["mid_price"]
         label = row["contractSymbol"]
-        display = f"${strike} | {premium}"
+        display = f"{strike:.2f} | {premium:.2f}"
         with cols[idx % 4]:
             if st.checkbox(display, value=True, key=f"show_{label}"):
                 selected_labels.append(label)
@@ -110,15 +124,20 @@ def render_put_chain_tab():
     # === P&L Simulation UI ===
     st.markdown("## 📊 Simulate Net P&L")
 
-    with st.expander("💡 What does Net P&L mean?", expanded=False):
-        st.markdown("""
-        This chart simulates how your portfolio value changes as the stock price moves. It accounts for:
+    with st.expander("💡 What does Net P&L simulation show?", expanded=True):
+        st.markdown(f"""
+        This interactive chart models the **future performance of your entire portfolio** after applying the selected PUT hedge on **{ticker}**.
 
-        - Your existing TSLA shares
-        - The PUT options you've selected
-        - Whether you used **cash or stock sales** to fund them
+        Here's what it does:
+        - Calculates your **capital after stock price changes**, considering your PUTs
+        - Factors in how you **funded the hedge** (cash vs. selling shares)
+        - Lets you **test different contract quantities** interactively
 
-        Green = Profit. Red = Loss. Use this to fine-tune your hedge strategy.
+        **🟢 Green zone**: your portfolio would be profitable  
+        **🔴 Red zone**: your capital falls below initial value
+
+        Use this simulation to answer:
+        > 🧠 *“Will this hedge protect me if the stock drops to $X?”*
         """)
 
     selected_contracts = []
@@ -158,6 +177,10 @@ def render_put_chain_tab():
         st.markdown(f"💰 **Hedge Cost**: `${hedge_cost:,.2f}`")
 
     if selected_contracts:
+        st.markdown("""
+🧪 You can now run a deeper simulation using your selected contracts. Unlike the breakeven chart,
+this will calculate **total capital outcome** (including leftover stock/cash) and display your **net P&L**.
+""")
         simulate = st.button("📊 Simulate Net P&L", key="simulate_net_final")
 
         if simulate:

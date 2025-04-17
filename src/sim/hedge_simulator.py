@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import streamlit as st
 
 def simulate_hedge(current_price, num_shares, strike, premium, contracts=1):
     """

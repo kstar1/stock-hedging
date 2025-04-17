@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import numpy as np
 import pandas as pd
+import streamlit as st
 
 def plot_put_loss_zones(df, current_price):
     '''
@@ -43,9 +44,9 @@ def plot_put_loss_zones(df, current_price):
             note = row.get("breakeven_note", "")
             ax.annotate("⚠", (strike, 5), rotation=90, fontsize=10, ha="center")
 
-    ax.axhline(current_price, color='black', linestyle='--', label='Current TSLA Price')
+    ax.axhline(current_price, color='black', linestyle='--', label=f"Current {st.session_state.ticker} Price")
     ax.set_xlabel("Strike Price")
-    ax.set_ylabel("TSLA Market Price")
+    ax.set_ylabel(f"{st.session_state.ticker} Market Price")
     ax.set_title("Loss Zones by PUT Strike Price")
     ax.grid(True)
 

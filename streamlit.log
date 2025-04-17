@@ -1153,3 +1153,57 @@ Traceback (most recent call last):
     selected_labels_set = set(selected_labels)
                               ^^^^^^^^^^^^^^^
 NameError: name 'selected_labels' is not defined. Did you mean: 'selected_exp'?
+2025-04-17 18:21:06.060 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 27, in render_put_chain_tab
+    expirations = get_option_expirations(ticker)
+                                         ^^^^^^
+NameError: name 'ticker' is not defined
+2025-04-17 18:39:33.319 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 88, in <module>
+    render_put_chain_tab()
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 116, in render_put_chain_tab
+    sorted_df = chart_df.sort_values("strike").reset_index(drop=True)
+                ^^^^^^^^
+UnboundLocalError: cannot access local variable 'chart_df' where it is not associated with a value
+2025-04-17 18:42:56.805 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
+    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 108
+    st.markdown("### 📌 Select Contracts to Show in Chart (`Strike($) | Premium($)`)")
+                                                                                     ^
+IndentationError: unindent does not match any outer indentation level
+2025-04-17 18:45:24.180 Uncaught app exception
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 85, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/opt/anaconda3/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 576, in code_to_exec
+    exec(code, module.__dict__)
+  File "/Users/kshitijdutt/stock-hedging/streamlit_app.py", line 8, in <module>
+    from src.ui.tabs.put_chain_tab import render_put_chain_tab  # ✅ new import
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/kshitijdutt/stock-hedging/src/ui/tabs/put_chain_tab.py", line 150, in <module>
+    chart_df = chart_df.sort_values(by="strike").reset_index(drop=True)
+               ^^^^^^^^
+NameError: name 'chart_df' is not defined

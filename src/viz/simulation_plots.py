@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import streamlit as st
 
 def plot_hedge_simulation(df, strike, premium, expiration):
     future_prices = df["Future Price ($)"]
@@ -19,7 +20,7 @@ def plot_hedge_simulation(df, strike, premium, expiration):
     plt.axvline(breakeven, linestyle=':', color='green', label=f"Breakeven: ${breakeven:.2f}")
 
     plt.axhline(0, color='gray', linewidth=1)
-    plt.xlabel("Future TSLA Price ($)")
+    plt.xlabel(f"Future {st.session_state.ticker} Price ($)")
     plt.ylabel("Profit / Loss ($)")
     plt.title(f"PUT Simulation | Strike: {strike} | Exp: {expiration} | Premium: ${premium:.2f}")
     plt.legend()
@@ -40,7 +41,7 @@ def plot_decision_simulation(df, strike, premium, expiration, roi=None):
     plt.fill_between(df[price_col], df[net_col], 0, where=(df[net_col] < 0), interpolate=True, color='red', alpha=0.1)
 
     plt.title(f"Hedge Decision | Strike {strike}, Premium {premium}, Exp {expiration}")
-    plt.xlabel("Future TSLA Price ($)")
+    plt.xlabel(f"Future {st.session_state.ticker} Price ($)")
     plt.ylabel("Net P&L ($)")
 
     if roi is not None:

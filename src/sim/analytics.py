@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from src.sim.put_breakeven_logic import solve_breakeven
 
-def compute_breakeven_zones(df, current_price, num_shares, avg_price, hedge_budget, budget_source):
+def compute_breakeven_zones(df, current_price, num_shares, avg_price, hedge_budget, budget_source, use_market_price):
     df = df.copy()
     shares_per_contract = 100
     initial_capital = num_shares * avg_price
@@ -24,7 +24,7 @@ def compute_breakeven_zones(df, current_price, num_shares, avg_price, hedge_budg
             df["breakeven_note"] = ""
             lb, ub, reason = solve_breakeven(
                 current_price, strike_price, premium_per_share, contracts,
-                num_shares, avg_price, hedge_budget, budget_source, mode="both"
+                num_shares, avg_price, hedge_budget, budget_source, mode="both",use_market_price=use_market_price
             )
             df.loc[index, "lower_breakeven"] = lb
             df.loc[index, "upper_breakeven"] = ub

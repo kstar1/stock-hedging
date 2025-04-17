@@ -1,13 +1,10 @@
-
 import numpy as np
 from scipy.optimize import fsolve
 
-def calculate_initial_capital(shares, avg_price, hedge_budget, premium, contracts, budget_source):
-    hedge_cost = premium * contracts * 100
-    if budget_source == "sell":
-        return shares * avg_price
-    else:  # cash
-        return shares * avg_price + hedge_budget
+def calculate_initial_capital(price, shares, avg_price, hedge_budget, premium, contracts, budget_source, use_market_price=True):
+    share_value = shares * price if use_market_price else shares * avg_price
+    initial_cap = share_value + hedge_budget if budget_source == "cash" else share_value
+    return initial_cap
 
 def calculate_now_capital(price, strike, premium, contracts, shares, budget_source):
     hedge_cost = premium * contracts * 100
@@ -22,10 +19,7 @@ def calculate_now_capital(price, strike, premium, contracts, shares, budget_sour
     stock_value = remaining_shares * price
     return put_payoff + stock_value
 
-from scipy.optimize import fsolve
-import numpy as np
-
-def solve_breakeven(price, strike, premium, contracts, shares, avg_price, hedge_budget, budget_source, mode="both"):
+def solve_breakeven(price, strike, premium, contracts, shares, avg_price, hedge_budget, budget_source, mode="both", use_market_price=True):
     try:
         if contracts <= 0 or premium <= 0:
             return (np.nan, np.nan, "no contracts (contracts <= 0 or premium <= 0)")
@@ -37,18 +31,14 @@ def solve_breakeven(price, strike, premium, contracts, shares, avg_price, hedge_
         if budget_source == "cash" and hedge_budget < hedge_cost:
             return (np.nan, np.nan, "Can't buy contracts from the cash (not enough)")
 
-        initial_cap = shares * avg_price
+        initial_cap = calculate_initial_capital(
+            price, shares, avg_price, hedge_budget, premium, contracts, budget_source, use_market_price
+        )
 
         def difference(p):
             if p <= 0:
                 return 1e6
-            put_payoff = max(0, strike - p) * contracts * 100
-            if budget_source == "sell":
-                shares_sold = hedge_cost / p
-                remaining_shares = shares - shares_sold
-            else:
-                remaining_shares = shares
-            capital_now = put_payoff + (remaining_shares * p)
+            capital_now = calculate_now_capital(p, strike, premium, contracts, shares, budget_source)
             return capital_now - initial_cap
 
         lower_breakeven = None

@@ -5,7 +5,6 @@ from src.data.option_chain_provider import get_option_expirations, get_put_optio
 from src.sim.option_filters import filter_puts
 from src.sim.analytics import compute_breakeven_zones
 from src.viz.put_breakeven_plot import plot_put_loss_zones
-#from src.sim.put_breakeven_logic import calculate_put_values
 
 def render_put_chain_tab():
     st.header("📉 PUT Option Chain Explorer")
@@ -27,23 +26,14 @@ def render_put_chain_tab():
     if raw_puts is None or raw_puts.empty:
         st.warning("No PUT option data found.")
         return
-
-    filtered_puts = filter_puts(raw_puts, current_price)
-    if filtered_puts.empty:
-        st.warning("No PUT contracts matched the filter criteria.")
-        return
-
-    # Filter PUTs by volume and moneyness
-    # Automatically determine moneyness range from available strike prices
-    strike_prices = filtered_puts["strike"].dropna().astype(float)
+    '''
+    st.markdown("🎯 **Filter PUTs by Moneyness and Volume**")
+    # Moneyness Filter Slider
+    strike_prices = raw_puts["strike"].dropna().astype(float)
     min_strike = strike_prices.min()
     max_strike = strike_prices.max()
     moneyness_min = int(min_strike - current_price)
     moneyness_max = int(max_strike - current_price)
-
-    st.markdown("🎯 **Filter PUTs by Moneyness and Volume**")
-
-    # Moneyness Filter Slider
     moneyness_range = st.slider(
         "Strike Price Range relative to Current Price ($)",
         min_value=moneyness_min,
@@ -51,23 +41,101 @@ def render_put_chain_tab():
         value=(max(-20, moneyness_min), min(20, moneyness_max)),
         step=1
     )
-    strike_min = current_price + moneyness_range[0]
-    strike_max = current_price + moneyness_range[1]
 
     # Volume Filter Slider
     volume_threshold = st.slider(
         "📊 Minimum Volume Required",
-        min_value=int(filtered_puts["volume"].min()),
-        max_value=int(filtered_puts["volume"].max()),
+        min_value=0,
+        max_value=int(raw_puts["volume"].max()),
         value=100,
         step=10
     )
+    #"""
+    # Filter puts using sliders
+    filtered_puts = filter_puts(
+        raw_puts,
+        current_price=current_price,
+        min_volume=volume_threshold,
+        moneyness_range=moneyness_range
+    )
+    #"""
+    """
+    st.subheader("🔎 Raw PUTs Debug Preview")
+    st.write(raw_puts.shape)
+    st.dataframe(raw_puts.head(100))
 
-    # Apply both filters to puts
-    filtered_puts = filtered_puts[
-        (filtered_puts["strike"].between(strike_min, strike_max)) &
-        (filtered_puts["volume"] >= volume_threshold)
-    ]
+    # Optional: show distribution of strike prices vs current price
+    st.write("Strike range:", raw_puts['strike'].min(), "to", raw_puts['strike'].max())
+    st.write("Current price:", current_price)
+    st.write("Volume stats — Min:", raw_puts['volume'].min(), "Max:", raw_puts['volume'].max())
+    st.write("🔍 Filtered PUTs shape:", filtered_puts.shape)
+    st.write("current_price:", current_price,"min_volume:", volume_threshold,"moneyness_range:", moneyness_range)
+    """
+    '''
+    # === Intelligent Defaults from raw_puts ===
+    strike_prices = raw_puts["strike"].dropna().astype(float)
+    min_strike = strike_prices.min()
+    max_strike = strike_prices.max()
+    moneyness_range_full = (min_strike / current_price, max_strike / current_price)
+
+    default_moneyness = (0.9, 1.1)
+    default_volume = 500
+    default_top_n = min(20, raw_puts.shape[0])  # cap default to 20
+    max_possible_contracts = raw_puts.shape[0]
+
+    # === Show Advanced Filter Toggle ===
+    show_advanced = st.checkbox("🔧 Show Advanced Filtering", value=False)
+
+    if show_advanced:
+        with st.expander("🎛️ Advanced PUT Filtering"):
+            moneyness_range = st.slider(
+                "Moneyness Range (Strike ÷ Spot)",
+                min_value=round(moneyness_range_full[0], 2),
+                max_value=round(moneyness_range_full[1], 2),
+                value=default_moneyness,
+                step=0.01
+            )
+            volume_threshold = st.slider(
+                "📊 Minimum Volume Required",
+                min_value=0,
+                max_value=int(raw_puts["volume"].max()),
+                value=default_volume,
+                step=10
+            )
+            max_contracts = st.slider(
+                "📉 Max Contracts to Show",
+                min_value=1,
+                max_value=max_possible_contracts,
+                value=default_top_n
+            )
+    else:
+        moneyness_range = default_moneyness
+        volume_threshold = default_volume
+        max_contracts = default_top_n
+
+    # === Apply Filters ===
+    filtered_puts = filter_puts(
+        raw_puts,
+        current_price=current_price,
+        min_volume=volume_threshold,
+        moneyness_range=moneyness_range
+    )
+
+    filtered_puts = filtered_puts.head(max_contracts)
+
+    if filtered_puts.empty:
+        st.warning("No PUT contracts matched the filter criteria.")
+        return
+
+    #strike_min = current_price + moneyness_range[0]
+    #strike_max = current_price + moneyness_range[1]
+
+    # Decision regarding the use of market price for initial capital
+    use_market_price = st.sidebar.toggle(
+        "📈 Use Market Price to Calculate Initial Capital?",
+        value=True,
+        help="If disabled, initial capital is based on average purchase price instead."
+    )
 
     # Compute breakeven zones
     breakeven_df = compute_breakeven_zones(
@@ -76,7 +144,8 @@ def render_put_chain_tab():
         num_shares=num_shares,
         avg_price=avg_price,
         hedge_budget=hedge_budget,
-        budget_source=budget_source
+        budget_source=budget_source,
+        use_market_price=use_market_price
     )
 
     if breakeven_df.empty:

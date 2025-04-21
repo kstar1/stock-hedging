@@ -43,8 +43,9 @@ def simulate_put_pnl_strict(selected_puts, price_range, current_price, shares, a
             total_put_payoff += payoff
 
         if budget_source == "sell":
-            shares_sold = hedge_cost / future_price
-            shares_remaining = shares - shares_sold
+            #shares_sold = hedge_cost / future_price
+            shares_sold = hedge_cost / current_price
+            shares_remaining = shares - shares_sold # Shares are always sold at current price
             stock_value = shares_remaining * future_price
             now_capital = total_put_payoff + stock_value
         else:  # cash
